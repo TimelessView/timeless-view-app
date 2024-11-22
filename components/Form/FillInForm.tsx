@@ -89,28 +89,47 @@ function FillInForm({ mode, onClose }: FillInFormType) {
         preferredWayOfCommunication: results.preferredWayOfCommunication,
         package: results.package
       });
+      // const { name, email, phone, preferredWayOfCommunication, serviceChosen } = results;
 
       const session = response.data;
 
       if (session.id) {
         /* TODO: SEND THE EMAIL TO OLENA ABOUT THE DETAILS OF A NEW BOOKING */
-        const emailToOlena = axios.post('/api/resend', {
-          subject: `New Booking is made at TimelessView! ${results.serviceChosen === `both` ? `Both Videography and Photography` : results.serviceChosen} Service`,
-          html: `
-          <b>Please go to your Stripe Account and ensure that the payment from ${results.email} was actually successful!</b>
-          <br>
-          <p><strong>Service Chosen:</strong> ${results.serviceChosen}</p>
-          <p><strong>Name:</strong> ${results.name};</p>
-          <p><strong>Email:</strong> ${results.email};</p>
-          <p><strong>Phone:</strong> ${results.phone};</p>
-          <p><strong>Preferred Way of Communication:</strong> ${results.preferredWayOfCommunication};</p>
-          <p><strong>Package:</strong> ${results.package};</p>
-        `
-        });
-
-        /* TODO: SEND EMAIL TO USER WHO BOOKED SERVICE */
-
-        await Promise.all([emailToOlena, emailToUser]);
+        // const emailToOlena = axios.post('/api/resend', {
+        //   subject: `New Booking is made at TimelessView! ${serviceChosen === `both` ? `Both Videography and Photography` : serviceChosen} Service`,
+        //   html: `
+        //   <b>Please go to your Stripe Account and ensure that the payment from ${email} was actually successful!</b>
+        //   <br>
+        //   <p><strong>Service Chosen:</strong> ${serviceChosen}</p>
+        //   <p><strong>Name:</strong> ${name};</p>
+        //   <p><strong>Email:</strong> ${email};</p>
+        //   <p><strong>Phone:</strong> ${phone};</p>
+        //   <p><strong>Preferred Way of Communication:</strong> ${preferredWayOfCommunication};</p>
+        //   <p><strong>Package:</strong> ${results.package};</p>
+        // `
+        // });
+        //
+        // const resendToUser = axios.post('/api/resend-to-user', {
+        //   email: results.email,
+        //   subject: `Your Booking at TimelessView!`,
+        //   html: `
+        //     <h1>Dear ${name},</h1>
+        //     <p>Thank you for booking my ${serviceChosen === `both` ? `Videography and Photography` : serviceChosen} service. I have received your deposit payment and will contact you shortly with further details.</p>;
+        //
+        //     <p>Right now, please feel free to fulfill this form, which would help me understand your needs better: <a href="">LINK</a></p>.
+        //
+        //     <h2>Booking Details:</h2>
+        //     <p>Service Chosen: ${serviceChosen}</p>
+        //     <p>Name: ${name};</p>
+        //     <p>Email: ${email};</p>
+        //     <p>Phone: ${phone};</p>
+        //     <p>Preferred Way of Communication: ${preferredWayOfCommunication};</p>
+        //     <p>Package: ${results.package};</p>
+        //     <br>
+        //     <p>Best regards,</p>
+        //     <p>TimelessView, Olena Vinytska</p>
+        //     `
+        // });
 
         await redirectToCheckout(session.id);
 

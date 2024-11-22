@@ -11,6 +11,12 @@ export const sendingEmailDetailsSchema = z.object({
   html: z.string().min(1, { message: `Content is required` })
 });
 
+export const sendingEmailDetailsToUserSchema = z.object({
+  subject: z.string().min(1, { message: `Subject is required` }).max(255),
+  html: z.string().min(1, { message: `Content is required` }),
+  email: z.string().email({ message: `Invalid email address` })
+});
+
 export const serviceBookingSchema = z.object({
   serviceChosen: z.enum([`photography`, `videography`, `both`]),
   name: z.string().min(1, { message: `Name is required` }).max(255),
