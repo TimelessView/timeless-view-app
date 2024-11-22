@@ -41,7 +41,7 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
         html: `
         <div style="font-family: 'Raleway', sans-serif">
           <h1>
-            A new consultation request has been made from your <b>timelessview</b> website. The details are as follows:
+            A new consultation request has been made <br> from your <b>timelessview</b> website. The details are as follows:
           </h1>
           <div>
             <h3>Name: ${name};</h3>
