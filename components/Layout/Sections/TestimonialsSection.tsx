@@ -12,12 +12,15 @@ import TestimonialCard from '@/components/UI/TestimonialCard';
 import ArrowIcon from '@/components/UI/ArrowIcon';
 
 function useWindowWidth() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   return windowWidth;
@@ -30,7 +33,7 @@ function TestimonialsSection() {
   const settings = {
     ...sliderSettings,
     pauseOnHover: true,
-    slidesToShow: windowWidth <= 1064 ? 1 : 2
+    slidesToShow: windowWidth! <= 1064 ? 1 : 2
   };
 
   return (
