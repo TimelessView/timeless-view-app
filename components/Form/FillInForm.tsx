@@ -16,6 +16,8 @@ import ArrowIcon from '@/components/UI/ArrowIcon';
 import HighlightText from '@/components/Typography/HighlightText';
 import { serviceBookingSchema } from '@/utils/schemas';
 import scrollTo from '@/utils/functions/scrollTo';
+import { redirectToCheckout } from '@/utils/stripe';
+import axios from 'axios';
 
 interface FillInFormType {
   mode: `photography` | `videography` | `success` | `error`;
@@ -25,6 +27,7 @@ interface FillInFormType {
 
 function FillInForm({ mode, onClose }: FillInFormType) {
   const [errors, setErrors] = useState<string>(``);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [chosenSelectionOptionsService, setChosenSelectionOptionsService] =
     useState(mode === `photography` ? photographyOptions : videographyOptions);
@@ -53,7 +56,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
     }
   };
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const currObject = e.currentTarget;
     const formData = new FormData(currObject);
@@ -74,11 +77,33 @@ function FillInForm({ mode, onClose }: FillInFormType) {
       scrollTo(`form-heading`);
       return;
     }
+    setLoading(true);
 
-    // resetting the form
-    // currObject.reset();
-    // output
-    console.log(results);
+    /* TODO: OPEN THE STRIPE FORM ON FULL SCREEN */
+    try {
+      const response = await axios.post('/api/create-checkout-session', {
+        serviceChosen: results.serviceChosen,
+        name: results.name,
+        email: results.email,
+        phone: results.phone,
+        preferredWayOfCommunication: results.preferredWayOfCommunication,
+        package: results.package
+      });
+
+      const session = response.data;
+
+      if (session.id) {
+        await redirectToCheckout(session.id);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setErrors('Failed to create Stripe Checkout session.');
+      }
+    } catch (error) {
+      setLoading(false);
+      setErrors('Something went wrong. Please try again later.');
+      console.error(error);
+    }
   }
 
   return (
@@ -114,12 +139,12 @@ function FillInForm({ mode, onClose }: FillInFormType) {
               onChange={handleServiceChange}
             />
 
-            <Input label={`your name`} name={`name`} placeholder={`e.g. Jane Doe`} />
-            <Input label={`your email`} name={`email`} placeholder={`e.g. jane.doe@gmil.com`} />
+            <Input disabled={loading} label={`your name`} name={`name`} placeholder={`e.g. Jane Doe`} />
+            <Input disabled={loading} label={`your email`} name={`email`} placeholder={`e.g. jane.doe@gmil.com`} />
           </div>
 
           <div className={`flex flex-col gap-8 mb-14`}>
-            <Input label={`your phone`} name={`phone`} placeholder={`Your Phone`} />
+            <Input disabled={loading} label={`your phone`} name={`phone`} placeholder={`Your Phone`} />
             <Select label={`preferred way of communication`} name={`preferredWayOfCommunication`}
                     options={[
                       {
@@ -155,9 +180,11 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                 </div>
               </button>
               <button
+                disabled={loading}
                 onClick={() => onClose(false)}
                 type={`button`}
-                className={`sm:text-3xl text-2xl bg-zinc-900 py-4 px-8 rounded-md text-zinc-500 hover:bg-zinc-950 transition-colors duration-200`}>
+                className={`sm:text-3xl text-2xl bg-zinc-900 py-4 px-8 rounded-md text-zinc-500 hover:bg-zinc-950 transition-colors duration-200
+                ${loading ? `animate-pulse cursor-not-allowed` : ``}`}>
                 Cancel
               </button>
             </div>

@@ -6,6 +6,7 @@ interface SelectType {
   options: { value: string; label: string }[];
   label: string;
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
   // children: ReactNode;
 }
 
@@ -14,19 +15,22 @@ function Select({
                   name,
                   options,
                   label,
-                  onChange
+                  onChange,
+                  disabled = false
                 }: SelectType) {
   return (
     <>
       <div className="group flex flex-col gap-3">
         <select
+          disabled={disabled}
           onChange={onChange}
           required={required}
           name={name}
           id={name}
           className={`sm:text-3xl text-2xl bg-zinc-950 pb-6 border-b border-zinc-200 w-full
                     transition-all duration-200 focus:border-amber-400 focus:placeholder-amber-400
-                    focus:text-amber-400`}
+                    focus:text-amber-400
+                    ${disabled ? `cursor-not-allowed animate-pulse` : ``}`}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
