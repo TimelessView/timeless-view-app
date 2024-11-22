@@ -49,5 +49,3 @@ export const sliderSettings = {
   autoplaySpeed: 900,
   pauseOnHover: false
 };
-
-

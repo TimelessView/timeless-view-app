@@ -10,10 +10,12 @@ import { consultationFormSchema } from '@/utils/schemas';
 import scrollTo from '@/utils/functions/scrollTo';
 import Input from '@/components/UI/Input';
 import FormButton from '@/components/UI/FormButton';
+import axios from 'axios';
 
 function ConsultationService(/*{  }: ConsultationServiceType*/) {
   const [formStage, setFormStage] = useState<1 | 2>(1);
   const [errors, setErrors] = useState<string>(``);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     setErrors(``);
@@ -28,13 +30,46 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
       setErrors(validateForm.error.errors[0].message);
       return;
     }
+    setLoading(true);
     setErrors(``);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { name, email, phone } = validateForm.data;
 
-    scrollTo(`myServices`);
+    try {
+      const response = await axios.post(`/api/resend`, {
+        subject: `A New Consultation Request is made at TimelessView!`,
+        html: `
+        <div style="font-family: 'Raleway', sans-serif">
+          <h1>
+            A new consultation request has been made from your <b>timelessview</b> website. The details are as follows:
+          </h1>
+          <div>
+            <h3>Name: ${name};</h3>
+            <h3>Email: ${email};</h3>
+            <h3>Phone: ${phone};</h3>
+          </div>
+          <div style="font-size: 0.875rem;">
+            Please reach out to this person as soon as possible. <br>
+            <span>Date of request: ${new Date().toLocaleDateString()}</span>
+          </div>
+        </div>`
+      });
 
-    /* TODO: USE RESEND PLATFORM TO SEND A MESSAGE TO MY CLIENT'S EMAIL */
+      if (response.data.status === `success`) {
+        scrollTo(`myServices`);
+        setFormStage(2);
+        setErrors(``);
+        setLoading(false);
+      }
+
+    } catch (e) {
+      // console.log(`Executing error in ConsultationService: `, e);
+      scrollTo(`myServices`);
+      setErrors(`Something went wrong. Please try again later.`);
+      setLoading(false);
+      console.error(e);
+      return;
+    }
 
   }
 
@@ -42,12 +77,12 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
   const firstFormStage = (
     <>
       <div className={`flex flex-col gap-12 mb-20 w-full`}>
-        <Input name={`name`} label={`your name`} placeholder={`e.g. Jane Doe`} />
-        <Input name={`email`} label={`your email`} placeholder={`e.g. jane.doe@gmail.com`} />
-        <Input type={`number`} name={`phone`} label={`your phone`} placeholder={`Your Phone`} />
+        <Input disabled={loading} name={`name`} label={`your name`} placeholder={`e.g. Jane Doe`} />
+        <Input disabled={loading} name={`email`} label={`your email`} placeholder={`e.g. jane.doe@gmail.com`} />
+        <Input disabled={loading} type={`number`} name={`phone`} label={`your phone`} placeholder={`Your Phone`} />
       </div>
       <div className={`mb-28`}>
-        <FormButton label={`consult me`} />
+        <FormButton loading={loading} label={`consult me`} />
       </div>
     </>
   );
