@@ -93,8 +93,27 @@ function FillInForm({ mode, onClose }: FillInFormType) {
       const session = response.data;
 
       if (session.id) {
+        /* TODO: SEND THE EMAIL TO OLENA ABOUT THE DETAILS OF A NEW BOOKING */
+        const emailToOlena = axios.post('/api/resend', {
+          subject: `New Booking is made at TimelessView! ${results.serviceChosen === `both` ? `Both Videography and Photography` : results.serviceChosen} Service`,
+          html: `
+          <b>Please go to your Stripe Account and ensure that the payment from ${results.email} was actually successful!</b>
+          <br>
+          <p><strong>Service Chosen:</strong> ${results.serviceChosen}</p>
+          <p><strong>Name:</strong> ${results.name};</p>
+          <p><strong>Email:</strong> ${results.email};</p>
+          <p><strong>Phone:</strong> ${results.phone};</p>
+          <p><strong>Preferred Way of Communication:</strong> ${results.preferredWayOfCommunication};</p>
+          <p><strong>Package:</strong> ${results.package};</p>
+        `
+        });
+
+        /* TODO: SEND EMAIL TO USER WHO BOOKED SERVICE */
+
+        await Promise.all([emailToOlena, emailToUser]);
+
         await redirectToCheckout(session.id);
-        // setSuccessFormOpen(true);
+
         setLoading(false);
       } else {
         setLoading(false);
