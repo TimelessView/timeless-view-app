@@ -1,21 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Federo&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+*:focus {
+    transition: all .3s;
+    outline: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    background: #0C0C0C;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    text-align: left;
+    overflow-x: hidden;
+}
+
+.bg-hero {
+    background-image: url('/hero/hero.png');
+    background-size: cover;
+    background-position: center;
+
+    @media only screen and (max-width: 37.5em) {
+        background-image: url('/hero/hero.png');
+    }
+}
+
+*::selection {
+    background-color: #222;
+    color: #fff;
 }
