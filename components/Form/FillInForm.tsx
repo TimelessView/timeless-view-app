@@ -16,8 +16,8 @@ import ArrowIcon from '@/components/UI/ArrowIcon';
 import HighlightText from '@/components/Typography/HighlightText';
 import { serviceBookingSchema } from '@/utils/schemas';
 import scrollTo from '@/utils/functions/scrollTo';
-import { redirectToCheckout } from '@/utils/stripe';
 import axios from 'axios';
+import { redirectToCheckout } from '@/utils/stripe';
 
 interface FillInFormType {
   mode: `photography` | `videography` | `success` | `error`;
@@ -25,7 +25,7 @@ interface FillInFormType {
   // children: ReactNode;
 }
 
-function FillInForm({ mode, onClose }: FillInFormType) {
+function FillInForm({ mode, onClose, setSuccessFormOpen }: FillInFormType) {
   const [errors, setErrors] = useState<string>(``);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -94,6 +94,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
 
       if (session.id) {
         await redirectToCheckout(session.id);
+        // setSuccessFormOpen(true);
         setLoading(false);
       } else {
         setLoading(false);

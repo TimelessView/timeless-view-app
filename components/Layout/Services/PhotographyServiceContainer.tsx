@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import CustomModal from '@/components/Modal/CustomModal';
-import FillInForm from '@/components/Form/FillInForm';
 import PhotographyService from '@/components/Layout/Services/PhotographyService';
 import FormButton from '@/components/UI/FormButton';
 import ServiceContainer from '@/components/Layout/ServiceContainer';
 import { MyServicesSectionType } from '@/components/Layout/Sections/MyServicesSection';
+import FillInForm from '@/components/Form/FillInForm';
 
 interface PhotographyServiceContainerType {
   openedService: MyServicesSectionType | false;
@@ -23,7 +23,6 @@ function PhotographyServiceContainer({ openedService, setOpenedService }: Photog
           <CustomModal content={(
             <>
               <FillInForm onClose={setFormOpen} mode={`photography`} />
-              {/*<SuccessModal onClose={setFormOpen} />*/}
               {/*<ErrorModal errorMessage={`Something went wrong while submitting your form. Please try again.*/}
               {/*If the issue persists, check your internet connection or contact me for assistance. I am here to help!`}*/}
               {/*            onClose={setFormOpen} />*/}

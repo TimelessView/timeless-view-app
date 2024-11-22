@@ -24,7 +24,7 @@ function SuccessModal({ onClose }: SuccessModalType) {
               fill="#DFDFDF" />
           </svg>
         </div>
-        <Heading heading={(
+        <Heading animation={false} heading={(
           <div className={`font-raleway font-semibold sm:text-7xl text-5xl max-w-screen-md mb-16`}>
             Thanks! The depopsit
             was successfully paid!
