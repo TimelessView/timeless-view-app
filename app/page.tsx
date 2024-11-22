@@ -1,4 +1,9 @@
 import Hero from '@/components/Layout/Sections/Hero';
+import PhotographySection from '@/components/Layout/Sections/PhotographySection';
+import VideoGraphySection from '@/components/Layout/Sections/VideoGraphySection';
+import TestimonialsSection from '@/components/Layout/Sections/TestimonialsSection';
+import MyServicesSection from '@/components/Layout/Sections/MyServicesSection';
+import Footer from '@/components/Layout/Footer';
 
 export default function Home() {
   return (
@@ -7,7 +12,12 @@ export default function Home() {
         <Hero />
       </div>
       <main>
+        <PhotographySection />
+        <VideoGraphySection />
+        <TestimonialsSection />
+        <MyServicesSection />
       </main>
+      <Footer />
     </div>
   );
 }

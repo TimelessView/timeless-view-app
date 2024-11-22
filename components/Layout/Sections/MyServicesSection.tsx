@@ -1,3 +1,5 @@
+'use client';
+
 /* interface MyServicesSectionType {
   // children: ReactNode;
 } */
