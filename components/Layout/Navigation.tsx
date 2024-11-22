@@ -13,9 +13,9 @@ export default function Navigation(/*{  }: NavigationType*/) {
     <>
       <header className={`items-center m-auto`}>
         <div className={`flex items-center justify-between`}>
-          <div className={`flex items-center textyello`}>
+          <div className={`flex items-center`}>
             <motion.h2
-              onClick={() => window.location.reload()}
+              onClick={() => window.location.href = `/`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className={`font-italiana text-3xl mr-24 bp-828:text-2xl text-nowrap 

@@ -25,7 +25,7 @@ interface FillInFormType {
   // children: ReactNode;
 }
 
-function FillInForm({ mode, onClose, setSuccessFormOpen }: FillInFormType) {
+function FillInForm({ mode, onClose }: FillInFormType) {
   const [errors, setErrors] = useState<string>(``);
   const [loading, setLoading] = useState<boolean>(false);
 

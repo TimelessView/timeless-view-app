@@ -1,9 +1,7 @@
-'use client';
-
+import { ReactNode, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { createPortal } from 'react-dom';
-import { ReactNode } from 'react';
 
 const style = {
   position: 'absolute',
@@ -35,6 +33,17 @@ type CustomModalProps = {
 };
 
 export default function CustomModal({ content, open, setOpen }: CustomModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const formElement = document.getElementById('form');
+  if (!formElement) return null;
+
   return createPortal(
     <div>
       <Modal
@@ -52,6 +61,6 @@ export default function CustomModal({ content, open, setOpen }: CustomModalProps
           {content}
         </Box>
       </Modal>
-    </div>, document.getElementById(`form`) as HTMLElement
+    </div>, formElement
   );
 }

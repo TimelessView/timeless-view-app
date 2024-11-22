@@ -10,11 +10,16 @@ interface SuccessModalType {
 }
 
 function SuccessModal({ onClose }: SuccessModalType) {
+
+  function handleCloseSuccessForm() {
+    onClose(false);
+  }
+
   return (
     <>
       <div className={`mt-11 sm:px-8 px-2 relative`}>
-        <div onClick={() => onClose(false)} className={`absolute -top-7 right-0 cursor-pointer
-      transition-all duration-200 hover:rotate-180 hover:scale-110`}>
+        <div onClick={() => handleCloseSuccessForm()} className={`absolute -top-7 right-0 cursor-pointer
+          transition-all duration-200 hover:rotate-180 hover:scale-110`}>
           <svg className={`w-20 lg:w-28 h-20 lg:h-28`} xmlns="http://www.w3.org/2000/svg" width="120"
                height="120"
                viewBox="0 0 125 125"
@@ -26,7 +31,7 @@ function SuccessModal({ onClose }: SuccessModalType) {
         </div>
         <Heading animation={false} heading={(
           <div className={`font-raleway font-semibold sm:text-7xl text-5xl max-w-screen-md mb-16`}>
-            Thanks! The depopsit
+            Thanks! The deposit
             was successfully paid!
           </div>
         )} />
@@ -50,7 +55,7 @@ function SuccessModal({ onClose }: SuccessModalType) {
           <div className={`flex lg:justify-between flex-col lg:flex-row gap-14 lg:gap-0`}>
             <div>
               <button
-                onClick={() => onClose(false)}
+                onClick={() => handleCloseSuccessForm()}
                 type={`button`}
                 className={`sm:text-3xl text-2xl bg-zinc-900 py-4 px-8 rounded-md text-zinc-500 hover:bg-zinc-950 transition-colors duration-200 mt-12
                 flex w-full lg:w-fit justify-center lg:justify-start`}>
