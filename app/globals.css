@@ -42,7 +42,7 @@ body {
     background-position: center;
 
     @media only screen and (max-width: 37.5em) {
-        background-image: url('/hero/hero.png');
+        background-image: url('/hero/hero-small.png');
     }
 }
 
