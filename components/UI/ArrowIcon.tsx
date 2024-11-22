@@ -1,11 +1,11 @@
 interface ArrowIconType {
   style: `small` | `large`;
-  color?: `white` | `yellow`;
+  color?: `white` | `yellow` | `grey`;
   // children: ReactNode;
 }
 
 function ArrowIcon({ style, color = `white` }: ArrowIconType) {
-  const chosenColor = color === `white` ? `white` : `rgb(234, 179, 8)`;
+  const chosenColor = color === `white` ? `white` : color === `yellow` ? `#FFD700` : `#A0AEC0`;
   const smallArrow = (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none"

@@ -110,7 +110,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
     <>
       <div className={`mt-11 sm:px-8 px-2 relative`}>
         <div onClick={() => onClose(false)} className={`absolute -top-7 right-0 cursor-pointer
-      transition-all duration-200 hover:rotate-180 hover:scale-110`}>
+          transition-all duration-200 hover:rotate-180 hover:scale-110`}>
           <svg className={`w-20 lg:w-28 h-20 lg:h-28`} xmlns="http://www.w3.org/2000/svg" width="120" height="120"
                viewBox="0 0 125 125"
                fill="none">
@@ -173,10 +173,10 @@ function FillInForm({ mode, onClose }: FillInFormType) {
             <div className={`flex lg:justify-between lg:items-center mt-10 mb-4 flex-col lg:flex-row gap-8 lg:gap-10`}>
               <button
                 className={`font-federo uppercase justify-center text-yellow-500 px-16 py-7 border border-amber-500 sm:text-3xl text-xl text-nowrap flex lg:w-fit items-center gap-4 transition-all duration-200 active:text-white active:border-zinc-50
-              `}>
+              ${loading ? `animate-pulse text-zinc-600 border-b-zinc-600` : ``}`}>
                 Pay 100$ CAD Deposit
                 <div className={`hidden sm:flex`}>
-                  <ArrowIcon color={`yellow`} style={`large`} />
+                  <ArrowIcon color={loading ? `grey` : `yellow`} style={`large`} />
                 </div>
               </button>
               <button
