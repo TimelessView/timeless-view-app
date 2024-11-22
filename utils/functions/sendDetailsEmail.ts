@@ -1,12 +1,12 @@
 import { Resend } from 'resend';
-import { sendingConsultationEmailSchema } from '@/utils/schemas';
+import { sendingEmailDetailsSchema } from '@/utils/schemas';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendDetailsEmail(details: { subject: string; html: string }) {
   const { subject, html } = details;
 
-  const validation = sendingConsultationEmailSchema.safeParse({ subject, html });
+  const validation = sendingEmailDetailsSchema.safeParse({ subject, html });
 
   if (!validation.success) {
     throw new Error(validation.error.errors[0].message);

@@ -8,7 +8,7 @@ import {
   videographyPackageOptions
 } from '@/utils/variables';
 import { Tooltip } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import Heading from '@/components/Typography/Heading';
 import Select from '@/components/UI/Select';
 import Input from '@/components/UI/Input';
@@ -49,6 +49,17 @@ function FillInForm({ mode, onClose }: FillInFormType) {
     }
   };
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const currObject = e.currentTarget;
+    const formData = new FormData(currObject);
+    const results = Object.fromEntries(formData.entries());
+    // resetting the form
+    // currObject.reset();
+    // output
+    console.log(results);
+  }
+
   return (
     <div className={`mt-11 sm:px-8 px-2 relative`}>
       <div onClick={() => onClose(false)} className={`absolute -top-7 right-0 cursor-pointer
@@ -66,7 +77,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
           Let’s fill in the form!
         </div>
       )} />
-      <form className={`flex flex-col bp-938:grid md:rid-cols-2 mt-[60px] gap-10`}>
+      <form onSubmit={handleSubmit} className={`flex flex-col bp-938:grid md:rid-cols-2 mt-[60px] gap-10`}>
         <div className={`flex flex-col gap-8`}>
           <Select
             label={`service chosen`}

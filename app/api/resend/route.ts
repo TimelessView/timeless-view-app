@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendDetailsEmail } from '@/utils/functions/sendDetailsEmail';
-import { sendingConsultationEmailSchema } from '@/utils/schemas';
+import { sendingEmailDetailsSchema } from '@/utils/schemas';
 import { ConsultationDetailsInterface } from '@/utils/interfaces/resend';
 
 export async function POST(request: NextRequest) {
@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
 
     const { subject, html } = await request.json() as ConsultationDetailsInterface;
 
-    const validation = sendingConsultationEmailSchema.safeParse({ subject, html });
+    const validation = sendingEmailDetailsSchema.safeParse({ subject, html });
 
     if (!validation.success) {
       return NextResponse.json({
