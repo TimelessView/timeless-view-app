@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ id: session.id });
-  } catch (err) {
-    return NextResponse.json({ error: 'Failed to create Stripe Checkout session' }, { status: 500 });
+  } catch (e) {
+    return NextResponse.json({ error: `Failed to create Stripe Checkout session: ${e}` }, { status: 500 });
   }
 }

@@ -34,7 +34,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
   const [chosenSelectionOptionsPackage, setChosenSelectionOptionsPackage] =
     useState(mode === `photography` ? photographyPackageOptions : videographyPackageOptions);
 
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedService, setSelectedService] = useState<string>('');
 
   const handleServiceChange = (event: ChangeEvent<HTMLSelectElement>) => {
