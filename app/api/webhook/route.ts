@@ -12,7 +12,7 @@ export const config = {
   }
 };
 
-// Helper to convert NextRequest to a buffer
+// Helper to convert a Readable stream to a buffer
 async function toBuffer(readable: Readable) {
   const chunks = [];
   for await (const chunk of readable) {
@@ -27,39 +27,37 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
+    // Convert request body to a buffer
     // @ts-ignore
-    const buf = await toBuffer(req.body as Readable); // Convert to buffer
+    const buf = await toBuffer(req.body as Readable);
     const sig = req.headers.get('stripe-signature')!;
 
+    // Construct the Stripe event
     event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
   } catch (err) {
-    console.error('Webhook signature verification failed.', err);
+    console.error('Webhook signature verification failed.', (err as Error).message);
     return NextResponse.json({ error: `Webhook Error: ${(err as Error).message}` }, { status: 400 });
   }
 
+  // Handle the webhook event
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
 
     console.log('Checkout session completed:', session);
 
     if (session.metadata) {
-      const {
-        email,
-        name,
-        phone,
-        preferredWayOfCommunication
-      } = session.metadata;
+      const { email, name, phone, preferredWayOfCommunication } = session.metadata;
 
       try {
         // Send emails
         await Promise.all([
-          fetch(`/api/resend`, {
+          fetch(`${process.env.BASE_URL}/api/resend`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              subject: `New Booking is made at TimelessView!`,
+              subject: `New Booking at TimelessView!`,
               html: `
-                <b>Please go to your Stripe Account and ensure that the payment from ${email} was actually successful!</b>
+                <b>Please ensure that the payment from ${email} was successful!</b>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Phone:</strong> ${phone}</p>
@@ -67,7 +65,7 @@ export async function POST(req: NextRequest) {
               `
             })
           }),
-          fetch(`/api/resend-to-user`, {
+          fetch(`${process.env.BASE_URL}/api/resend-to-user`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -75,13 +73,12 @@ export async function POST(req: NextRequest) {
               subject: `Your Booking at TimelessView!`,
               html: `
                 <h1>Dear ${name},</h1>
-                <p>Thank you for booking our services. We have received your payment and will contact you shortly with further details.</p>
+                <p>Thank you for booking our services. We will contact you shortly.</p>
                 <h2>Booking Details:</h2>
                 <p>Name: ${name}</p>
                 <p>Email: ${email}</p>
                 <p>Phone: ${phone}</p>
                 <p>Preferred Way of Communication: ${preferredWayOfCommunication}</p>
-                <br>
                 <p>Best regards,</p>
                 <p>TimelessView Team</p>
               `
@@ -91,7 +88,7 @@ export async function POST(req: NextRequest) {
 
         console.log('Emails sent successfully');
       } catch (err) {
-        console.error('Error sending emails:', err);
+        console.error('Error sending emails:', (err as Error).message);
         return NextResponse.json({ error: `Webhook Error: ${(err as Error).message}` }, { status: 500 });
       }
     } else {
@@ -100,5 +97,6 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Acknowledge receipt of the webhook
   return NextResponse.json({ received: true });
 }
