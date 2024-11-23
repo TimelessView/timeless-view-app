@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { buffer } from 'micro';
 import Stripe from 'stripe';
-import axios from 'axios';
-import { IncomingMessage } from 'node:http';
+import { Readable } from 'stream';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-11-20.acacia'
@@ -14,13 +12,23 @@ export const config = {
   }
 };
 
+// Helper to convert NextRequest to a buffer
+async function toBuffer(readable: Readable) {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
+
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
 export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    const buf = await buffer(req as unknown as IncomingMessage);
+    // @ts-ignore
+    const buf = await toBuffer(req.body as Readable); // Convert to buffer
     const sig = req.headers.get('stripe-signature')!;
 
     event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
@@ -39,52 +47,51 @@ export async function POST(req: NextRequest) {
         email,
         name,
         phone,
-        // serviceChosen,
         preferredWayOfCommunication
-        // package: servicePackage
       } = session.metadata;
-
-      // console.log('Metadata:', { email, name, phone, serviceChosen, preferredWayOfCommunication, servicePackage });
 
       try {
         // Send emails
-        await axios.post('/api/resend', {
-          subject: `New Booking is made at TimelessView! Service`,
-          html: `
-            <b>Please go to your Stripe Account and ensure that the payment from ${email} was actually successful!</b>
-            <br>
-<!--            <p><strong>Service Chosen:</strong> serviceChosen</p>-->
-            <p><strong>Name:</strong> ${name};</p>
-            <p><strong>Email:</strong> ${email};</p>
-            <p><strong>Phone:</strong> ${phone};</p>
-            <p><strong>Preferred Way of Communication:</strong> ${preferredWayOfCommunication};</p>
-<!--            <p><strong>Package:</strong> servicePackage</p>-->
-          `
-        });
-
-        await axios.post('/api/resend-to-user', {
-          email,
-          subject: `Your Booking at TimelessView!`,
-          html: `
-            <h1>Dear ${name},</h1>
-            <p>Thank you for booking my services. I have received your deposit payment and will contact you shortly with further details.</p>
-            <p>Right now, please feel free to fulfill this form, which would help me understand your needs better: <a href="">LINK</a></p>
-            <h2>Booking Details:</h2>
-<!--            <p>Service Chosen: {serviceChosen}</p>-->
-            <p>Name: ${name};</p>
-            <p>Email: ${email};</p>
-            <p>Phone: ${phone};</p>
-            <p>Preferred Way of Communication: ${preferredWayOfCommunication};</p>
-<!--            <p>Package: {servicePackage};</p>-->
-            <br>
-            <p>Best regards,</p>
-            <p>TimelessView, Olena Vinytska</p>
-          `
-        });
+        await Promise.all([
+          fetch(`/api/resend`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              subject: `New Booking is made at TimelessView!`,
+              html: `
+                <b>Please go to your Stripe Account and ensure that the payment from ${email} was actually successful!</b>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Preferred Way of Communication:</strong> ${preferredWayOfCommunication}</p>
+              `
+            })
+          }),
+          fetch(`/api/resend-to-user`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              subject: `Your Booking at TimelessView!`,
+              html: `
+                <h1>Dear ${name},</h1>
+                <p>Thank you for booking our services. We have received your payment and will contact you shortly with further details.</p>
+                <h2>Booking Details:</h2>
+                <p>Name: ${name}</p>
+                <p>Email: ${email}</p>
+                <p>Phone: ${phone}</p>
+                <p>Preferred Way of Communication: ${preferredWayOfCommunication}</p>
+                <br>
+                <p>Best regards,</p>
+                <p>TimelessView Team</p>
+              `
+            })
+          })
+        ]);
 
         console.log('Emails sent successfully');
       } catch (err) {
-        console.error('Error handling checkout session completed event:', err);
+        console.error('Error sending emails:', err);
         return NextResponse.json({ error: `Webhook Error: ${(err as Error).message}` }, { status: 500 });
       }
     } else {
