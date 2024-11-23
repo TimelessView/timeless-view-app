@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { buffer } from 'micro';
 import Stripe from 'stripe';
 import axios from 'axios';
+import { IncomingMessage } from 'node:http';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-11-20.acacia'
@@ -19,8 +20,7 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    // @ts-ignore
-    const buf = await buffer(req);
+    const buf = await buffer(req as unknown as IncomingMessage);
     const sig = req.headers.get('stripe-signature')!;
 
     event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
@@ -35,28 +35,23 @@ export async function POST(req: NextRequest) {
 
     console.log('Checkout session completed:', session);
 
-    try {
+    if (session.metadata) {
       const {
-        // @ts-ignore
         email,
-        // @ts-ignore
         name,
-        // @ts-ignore
         phone,
-        // @ts-ignore
         serviceChosen,
-        // @ts-ignore
         preferredWayOfCommunication,
-        // @ts-ignore
         package: servicePackage
       } = session.metadata;
 
       console.log('Metadata:', { email, name, phone, serviceChosen, preferredWayOfCommunication, servicePackage });
 
-      // Send emails
-      await axios.post('/api/resend', {
-        subject: `New Booking is made at TimelessView! ${serviceChosen === `both` ? `Both Videography and Photography` : serviceChosen} Service`,
-        html: `
+      try {
+        // Send emails
+        await axios.post('/api/resend', {
+          subject: `New Booking is made at TimelessView! ${serviceChosen === `both` ? `Both Videography and Photography` : serviceChosen} Service`,
+          html: `
           <b>Please go to your Stripe Account and ensure that the payment from ${email} was actually successful!</b>
           <br>
           <p><strong>Service Chosen:</strong> ${serviceChosen}</p>
@@ -66,12 +61,12 @@ export async function POST(req: NextRequest) {
           <p><strong>Preferred Way of Communication:</strong> ${preferredWayOfCommunication};</p>
           <p><strong>Package:</strong> ${servicePackage};</p>
         `
-      });
+        });
 
-      await axios.post('/api/resend-to-user', {
-        email,
-        subject: `Your Booking at TimelessView!`,
-        html: `
+        await axios.post('/api/resend-to-user', {
+          email,
+          subject: `Your Booking at TimelessView!`,
+          html: `
           <h1>Dear ${name},</h1>
           <p>Thank you for booking my ${serviceChosen === `both` ? `Videography and Photography` : serviceChosen} service. I have received your deposit payment and will contact you shortly with further details.</p>
           <p>Right now, please feel free to fulfill this form, which would help me understand your needs better: <a href="">LINK</a></p>
@@ -86,13 +81,17 @@ export async function POST(req: NextRequest) {
           <p>Best regards,</p>
           <p>TimelessView, Olena Vinytska</p>
         `
-      });
+        });
 
-      console.log('Emails sent successfully');
-    } catch (err) {
-      console.error('Error handling checkout session completed event:', err);
-      // @ts-ignore
-      return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 500 });
+        console.log('Emails sent successfully');
+      } catch (err) {
+        console.error('Error handling checkout session completed event:', err);
+        // @ts-ignore
+        return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 500 });
+      }
+    } else {
+      console.error('No metadata found in session.');
+      return NextResponse.json({ error: 'No metadata found in session.' }, { status: 400 });
     }
   }
 
