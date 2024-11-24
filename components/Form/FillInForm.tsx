@@ -180,7 +180,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
             <div className={`flex lg:justify-between lg:items-center mt-10 mb-4 flex-col lg:flex-row gap-8 lg:gap-10`}>
               <button
                 className={`font-federo uppercase justify-center text-yellow-500 px-16 py-7 border border-amber-500 sm:text-3xl text-xl text-nowrap flex lg:w-fit items-center gap-4 transition-all duration-200 active:text-white active:border-zinc-50
-              ${loading ? `animate-pulse text-zinc-600 border-b-zinc-600` : ``}`}>
+              ${loading ? `animate-pulse text-zinc-600 border-zinc-600` : ``}`}>
                 Pay 100$ CAD Deposit
                 <div className={`hidden sm:flex`}>
                   <ArrowIcon color={loading ? `grey` : `yellow`} style={`large`} />
