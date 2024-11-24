@@ -69,6 +69,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
       package: string;
     };
 
+
     const validation = serviceBookingSchema.safeParse(results);
 
     if (!validation.success) {
@@ -78,14 +79,22 @@ function FillInForm({ mode, onClose }: FillInFormType) {
     }
     setLoading(true);
 
+    const { sanitizedName, sanitizedEmail, sanitizedPhone, sanitizedPreferredWayOfCommunication, sanitizedPackage } = {
+      sanitizedName: results.name.trim(),
+      sanitizedEmail: results.email.trim().toLowerCase(),
+      sanitizedPhone: results.phone.trim(),
+      sanitizedPreferredWayOfCommunication: results.preferredWayOfCommunication.trim(),
+      sanitizedPackage: results.package.trim()
+    };
+
     try {
       const response = await axios.post('/api/create-checkout-session', {
         serviceChosen: results.serviceChosen,
-        name: results.name,
-        email: results.email,
-        phone: results.phone,
-        preferredWayOfCommunication: results.preferredWayOfCommunication,
-        package: results.package
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone,
+        preferredWayOfCommunication: sanitizedPreferredWayOfCommunication,
+        package: sanitizedPackage
       });
 
       const session = response.data;
