@@ -57,12 +57,14 @@ export async function POST(req: NextRequest) {
             body: JSON.stringify({
               subject: `New Booking at TimelessView!`,
               html: `
-                <b>Please visit your Stipe Account to ensure that the payment from ${email} was successful! 
+                <b>Please visit your Stripe Account to ensure that the payment from ${email} was successful! 
                 Also you can see all the details about the booking there.</b>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Phone:</strong> ${phone}</p>
                 <p><strong>Preferred Way of Communication:</strong> ${preferredWayOfCommunication}</p>
+                <p>Date of booking: ${new Date(session.created * 1000).toLocaleString()}
+                </p>
               `
             })
           }),
@@ -75,7 +77,8 @@ export async function POST(req: NextRequest) {
               html: `
                 <h1>Dear ${name},</h1>
                 <p>Thank you for booking my services! I will contact you shortly.</p>
-                <p>Now, please feel free to fulfil this form here - <a href="">Google Form</a>, so I would 
+                <p>Now, please feel free to fill in this form here - <a href="#" style="
+                color: #fbbf24; text-decoration: underline; ">Google Form</a>, so I would 
                 be able to understand your needs better.</p>
                 <h2>Booking Details:</h2>
                 <p>Name: ${name}</p>
