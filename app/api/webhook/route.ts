@@ -57,6 +57,7 @@ export async function POST(req: NextRequest) {
             body: JSON.stringify({
               subject: `New Booking at TimelessView!`,
               html: `
+                <h1>A new booking was made at TimelessView right now!</h1>
                 <b>Please visit your Stripe Account to ensure that the payment from ${email} was successful! 
                 Also you can see all the details about the booking there.</b>
                 <p><strong>Name:</strong> ${name}</p>
