@@ -35,6 +35,12 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
 
     const { name, email, phone } = validateForm.data;
 
+    const { sanitizedEmail, sanitizedName, sanitizedPhone } = {
+      sanitizedEmail: email.trim().toLowerCase(),
+      sanitizedName: name.trim(),
+      sanitizedPhone: phone.trim()
+    };
+
     try {
       const response = await axios.post(`/api/resend`, {
         subject: `A New Consultation Request is made at TimelessView!`,
@@ -44,9 +50,9 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
             A new consultation request has been made <br> from your <b>timelessview</b> website. The details are as follows:
           </h1>
           <div>
-            <h3>Name: ${name.trim()};</h3>
-            <h3>Email: ${email.trim()};</h3>
-            <h3>Phone: ${phone.trim()};</h3>
+            <h3>Name: ${sanitizedName};</h3>
+            <h3>Email: ${sanitizedEmail};</h3>
+            <h3>Phone: ${sanitizedPhone}.</h3>
           </div>
           <div style="font-size: 0.875rem;">
             Please reach out to this person as soon as possible. <br>
