@@ -57,7 +57,8 @@ export async function POST(req: NextRequest) {
             body: JSON.stringify({
               subject: `New Booking at TimelessView!`,
               html: `
-                <b>Please ensure that the payment from ${email} was successful!</b>
+                <b>Please visit your Stipe Account to ensure that the payment from ${email} was successful! 
+                Also you can see all the details about the booking there.</b>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Phone:</strong> ${phone}</p>
@@ -73,14 +74,16 @@ export async function POST(req: NextRequest) {
               subject: `Your Booking at TimelessView!`,
               html: `
                 <h1>Dear ${name},</h1>
-                <p>Thank you for booking our services. We will contact you shortly.</p>
+                <p>Thank you for booking my services! I will contact you shortly.</p>
+                <p>Now, please feel free to fulfil this form here - <a href="">Google Form</a>, so I would 
+                be able to understand your needs better.</p>
                 <h2>Booking Details:</h2>
                 <p>Name: ${name}</p>
                 <p>Email: ${email}</p>
                 <p>Phone: ${phone}</p>
                 <p>Preferred Way of Communication: ${preferredWayOfCommunication}</p>
                 <p>Best regards,</p>
-                <p>TimelessView Team</p>
+                <p>TimelessView, Olena Vinytska</p>
               `
             })
           })
