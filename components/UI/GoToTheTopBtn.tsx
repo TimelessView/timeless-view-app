@@ -27,7 +27,7 @@ export default function GoToTheTopBtn() {
   }, []);
 
   return (
-    <div ref={buttonRef} className={`fixed bottom-14 sm:bottom-6 right-6 z-10`}>
+    <div ref={buttonRef} className={`fixed bottom-14 sm:bottom-6 right-6 z-10 hidden`}>
       <motion.button
         initial={{ scale: 0, rotate: 360 }}
         whileInView={{ scale: 1, rotate: 0 }}
