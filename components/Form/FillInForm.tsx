@@ -18,6 +18,7 @@ import { serviceBookingSchema } from '@/utils/schemas';
 import scrollTo from '@/utils/functions/scrollTo';
 import axios from 'axios';
 import { redirectToCheckout } from '@/utils/stripe';
+import SmallSpan from '@/components/Typography/SmallSpan';
 
 interface FillInFormType {
   mode: `photography` | `videography` | `success` | `error`;
@@ -181,7 +182,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
               <button
                 className={`font-federo uppercase justify-center text-yellow-500 px-16 py-7 border border-amber-500 sm:text-3xl text-xl text-nowrap flex lg:w-fit items-center gap-4 transition-all duration-200 active:text-white active:border-zinc-50
               ${loading ? `animate-pulse text-zinc-600 border-zinc-600` : ``}`}>
-                Pay 100$ CAD Deposit
+                {loading ? `Processing...` : `Pay 100$ CAD Deposit`}
                 <div className={`hidden sm:flex`}>
                   <ArrowIcon color={loading ? `grey` : `yellow`} style={`large`} />
                 </div>
@@ -192,7 +193,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                 type={`button`}
                 className={`sm:text-3xl text-2xl bg-zinc-900 py-4 px-8 rounded-md text-zinc-500 hover:bg-zinc-950 transition-colors duration-200
                 ${loading ? `animate-pulse cursor-not-allowed` : ``}`}>
-                Cancel
+                Close
               </button>
             </div>
             <div>
@@ -217,7 +218,8 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                   CAD
                   Deposit&#34; button, you agree to the <span
                     className={`underline underline-offset-2 cursor-pointer`}><HighlightText
-                    text={`Terms and Conditions.`} />
+                    text={`Terms and Conditions.`} /> <SmallSpan customClasses={`text-[12px] sm:hidden`}
+                                                                 text={`(press to view)`} />
                 </span>
                 </p>
               </Tooltip>
