@@ -85,7 +85,7 @@ function ConsultationService(/*{  }: ConsultationServiceType*/) {
     <>
       <Paragraph customClasses={`max-w-screen-sm text-zinc-400 mb-8`} text={(
         <>
-          Do not want to book a consultation right away? No worries! <br />Just
+          Do not want to book a consultation right away? No worries! Just <br />
           contact me at <a className={`font-semibold underline`}
                            href="mailto:timelessview24@gmail.com">timelessview24@gmail.com</a>!
         </>
