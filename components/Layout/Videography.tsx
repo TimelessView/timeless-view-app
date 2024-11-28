@@ -7,7 +7,7 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/1vYLQ58Ulx8?si=KRxwUkn4hKg2WOB0"
+          src="https://www.youtube.com/embed/YWU8Dbe_chU?si=w5ZFTVuD7-fq3Men"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -20,7 +20,7 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/gu82Lu0-fz8?si=unlo-wKKx64hUICs"
+          src="https://www.youtube.com/embed/GlmAH_opZos?si=XTMqtCMjAqvWITP-"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -33,7 +33,7 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/e-88iaM48dk?si=CPYrcii180ffTLZ1"
+          src="https://www.youtube.com/embed/1dLeIdLddE8?si=D6dCxgISezbuFa4t"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -47,7 +47,7 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/QjYM8J99uow?si=2moIU-P6bjXYuRcy"
+          src="https://www.youtube.com/embed/B76GfvpW-L0?si=21arfQD1P6ys9FFa"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -60,7 +60,7 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/kVuv3DNaGmc?si=1wCXwHeXM2BtvOqf"
+          src="https://www.youtube.com/embed/pc1LaQ-1bMA?si=XUWUb0Q8Ujsh_h_-"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -73,7 +73,20 @@ function Videography(/*{  }: VideographyType*/) {
         <iframe
           width="400"
           height="620"
-          src="https://www.youtube.com/embed/ZHcmF92x3R0?si=h1QRUdlzoEhQV4FF"
+          src="https://www.youtube.com/embed/ffligM1ocpM?si=B6YSZ1mYbVRY0VwL"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className={`rotate-3 mr-5`}
+        ></iframe>
+      </div>
+
+      <div className={`flex`}>
+        <iframe
+          width="400"
+          height="620"
+          src="https://www.youtube.com/embed/gCnxdmN0RoY"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
