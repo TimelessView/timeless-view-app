@@ -6,6 +6,7 @@ import VideoGraphySection from '@/components/Layout/Sections/VideoGraphySection'
 import TestimonialsSection from '@/components/Layout/Sections/TestimonialsSection';
 import MyServicesSection from '@/components/Layout/Sections/MyServicesSection';
 import Footer from '@/components/Layout/Footer';
+import GoToTheTopBtn from '@/components/UI/GoToTheTopBtn';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,6 +24,7 @@ export default function
     <body>
     <div id="form"></div>
     {children}
+    <GoToTheTopBtn />
     <div className={`w-full`}>
       <div className={`sm:h-[120%] bg-hero mb-16 pb-24`}>
         <Hero />
