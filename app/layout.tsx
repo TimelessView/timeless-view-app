@@ -24,7 +24,7 @@ export default function
     <div id="form"></div>
     {children}
     <div className={`w-full`}>
-      <div className={`sm:h-screen bg-hero mb-16 pb-12`}>
+      <div className={`sm:h-[120%] bg-hero mb-16 pb-24`}>
         <Hero />
       </div>
       <main>
