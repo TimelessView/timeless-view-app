@@ -9,7 +9,6 @@ import {
 } from '@/utils/variables';
 import { Tooltip } from '@mui/material';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import Heading from '@/components/Typography/Heading';
 import Select from '@/components/UI/Select';
 import Input from '@/components/UI/Input';
 import ArrowIcon from '@/components/UI/ArrowIcon';
@@ -19,6 +18,8 @@ import scrollTo from '@/utils/functions/scrollTo';
 import axios from 'axios';
 import { redirectToCheckout } from '@/utils/stripe';
 import SmallSpan from '@/components/Typography/SmallSpan';
+import { motion } from 'framer-motion';
+import Heading from '@/components/Typography/Heading';
 
 interface FillInFormType {
   mode: `photography` | `videography` | `success` | `error`;
@@ -116,7 +117,11 @@ function FillInForm({ mode, onClose }: FillInFormType) {
 
   return (
     <>
-      <div className={`mt-11 sm:px-8 px-2 relative`}>
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+        className={`mt-11 sm:px-8 px-2 relative`}>
         <div onClick={() => onClose(false)} className={`absolute -top-7 right-0 cursor-pointer
           transition-all duration-200 hover:rotate-180 hover:scale-110`}>
           <svg className={`w-20 lg:w-28 h-20 lg:h-28`} xmlns="http://www.w3.org/2000/svg" width="120" height="120"
@@ -227,7 +232,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
     </>
   );
 }

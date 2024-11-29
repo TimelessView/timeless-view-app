@@ -57,9 +57,11 @@ export default function CustomModal({ content, open, setOpen }: CustomModalProps
           }
         }}
       >
-        <Box sx={style}>
-          {content}
-        </Box>
+        <div>
+          <Box sx={style}>
+            {content}
+          </Box>
+        </div>
       </Modal>
     </div>, formElement
   );

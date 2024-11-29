@@ -28,7 +28,7 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
-      const threshold = document.documentElement.scrollHeight * 0.5;
+      const threshold = document.documentElement.scrollHeight * 0.3;
 
       if (buttonRef.current) {
         if (scrollPosition >= threshold) {
@@ -51,7 +51,7 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
         onClose={() => setNavigationOpen(false)}
         slotProps={{
           backdrop: {
-            sx: { backgroundColor: `rgba(0, 0, 0, 0.95)` }
+            sx: { backgroundColor: `rgba(9, 9, 11, 0.95)` }
           }
         }}>
         <motion.div
@@ -59,7 +59,7 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`max-w-screen-xl m-auto pt-12 relative px-8  overflow-y-auto scrollbar-hide`}>
+          className={`max-w-screen-xl m-auto pt-12 relative px-8  overflow-y-auto scrollbar-hide textzinc950`}>
           <motion.button
             onClick={() => setNavigationOpen(false)}
             whileHover={{ scale: 1.1, rotate: -5, transition: { duration: 0.2 } }}

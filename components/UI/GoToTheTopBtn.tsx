@@ -9,7 +9,7 @@ export default function GoToTheTopBtn() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
-      const threshold = document.documentElement.scrollHeight * 0.5;
+      const threshold = document.documentElement.scrollHeight * 0.3;
 
       if (buttonRef.current) {
         if (scrollPosition >= threshold) {
