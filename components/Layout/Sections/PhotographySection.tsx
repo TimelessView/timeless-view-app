@@ -14,15 +14,28 @@ import Photo7 from '@/assets/photography/photo-original-7.png';
 import Photo8 from '@/assets/photography/photo-original-8.png';
 import Photo9 from '@/assets/photography/photo-original-9.png';
 
+import Photo1FullScreen from '@/assets/photography/photo-original-1-full-screen.png';
+import Photo2FullScreen from '@/assets/photography/photo-original-2-full-screen.png';
+import Photo3FullScreen from '@/assets/photography/photo-original-3-full-screen.png';
+
 import { motion } from 'framer-motion';
 import Photography from '@/components/Layout/Photography';
 import { sliderSettings } from '@/utils/variables';
 import AnimatedImage from '@/components/UI/AnimatedImage';
-
+import { useCartDispatch } from '@/store/hooks';
+import { photographySliceActions } from '@/store/slices/photographySlice';
+import Tooltip from '@/components/Layout/Tooltip';
 
 const photos = [Photo6, Photo7, Photo8, Photo9, Photo1, Photo2, Photo3, Photo4, Photo5];
+const fullScreenPhotos = [Photo1FullScreen.src, Photo2FullScreen.src, Photo3FullScreen.src];
 
-function PhotographySection(/*{  }: PhotographySectionType*/) {
+function PhotographySection() {
+  const dispatch = useCartDispatch();
+
+  function handleClickOnImage(image: string) {
+    dispatch(photographySliceActions.toggleImageVisibility(true));
+    dispatch(photographySliceActions.setImage(image));
+  }
 
   return (
     <motion.section
@@ -41,17 +54,19 @@ function PhotographySection(/*{  }: PhotographySectionType*/) {
         </Slider>
       </div>
       <div className={`flex items-center overflow-x-auto scrollbar-hide gap-4 sm:hidden`}>
-        <img src={Photo1.src} alt={`Photo 1`} className={`w-full`} />
-        <img src={Photo2.src} alt={`Photo 2`} className={`w-full`} />
-        <img src={Photo3.src} alt={`Photo 3`} className={`w-full`} />
-        <img src={Photo4.src} alt={`Photo 4`} className={`w-full`} />
-        <img src={Photo5.src} alt={`Photo 5`} className={`w-full`} />
-        <img src={Photo6.src} alt={`Photo 6`} className={`w-full`} />
-        <img src={Photo7.src} alt={`Photo 7`} className={`w-full`} />
-        <img src={Photo8.src} alt={`Photo 8`} className={`w-full`} />
-        <img src={Photo9.src} alt={`Photo 9`} className={`w-full`} />
+        {fullScreenPhotos.map((photo, index) => (
+          <img
+            key={index}
+            onClick={() => handleClickOnImage(photo)}
+            src={photos[index + 4].src} // Adjust index to match the full-screen photos
+            alt={`Photo ${index + 1}`}
+            className={`w-full`}
+          />
+        ))}
       </div>
-      {/*<Tooltip label={`Scroll to the right to see more`} />*/}
+      <div className={`sm:hidden`}>
+        <Tooltip label={`Click on the image to view it in full screen`} />
+      </div>
     </motion.section>
   );
 }

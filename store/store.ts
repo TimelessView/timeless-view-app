@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import navigationSlice from '@/store/slices/NavigationSlice';
+import photographySlice from '@/store/slices/photographySlice';
 
 /*  IMPORTANT
      HOW TO USE IT:
@@ -21,7 +22,8 @@ import navigationSlice from '@/store/slices/NavigationSlice';
 
 const store = configureStore({
   reducer: {
-    navigation: navigationSlice
+    navigation: navigationSlice,
+    photography: photographySlice
   }
 });
 

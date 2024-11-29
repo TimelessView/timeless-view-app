@@ -9,6 +9,7 @@ import Footer from '@/components/Layout/Footer';
 import BurgerMenu from '@/components/UI/BurgerMenu';
 import GoToTheTopBtn from '@/components/UI/GoToTheTopBtn';
 import ReduxProvider from '@/components/Providers/ReduxProvider';
+import FullScreenImagery from '@/components/Layout/FullScreenImagery';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,6 +26,9 @@ export default function
     <html lang="en">
     <body className={`transition-all duration-150`}>
     <div id="form"></div>
+    <ReduxProvider>
+      <FullScreenImagery />
+    </ReduxProvider>
     {children}
     <GoToTheTopBtn />
     <ReduxProvider>
@@ -35,7 +39,9 @@ export default function
         <Hero />
       </div>
       <main>
-        <PhotographySection />
+        <ReduxProvider>
+          <PhotographySection />
+        </ReduxProvider>
         <VideoGraphySection />
         <TestimonialsSection />
         <MyServicesSection />
