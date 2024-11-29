@@ -38,8 +38,8 @@ function Videography() {
             className={`flex`}
           >
             <iframe
-              width="400"
-              height="620"
+              width="290"
+              height="520"
               src={video}
               title="YouTube video player"
               frameBorder="0"
