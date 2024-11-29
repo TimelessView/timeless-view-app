@@ -66,8 +66,9 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
             initial={{ scale: 0.7, y: -100 }}
             animate={{ scale: 1, y: 0 }}
             whileTap={{ scale: 0.9 }}
-            className={`absolute top-10 right-3 transition-all duration-200`}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="55" height="104" viewBox="0 0 55 104" fill="none">
+            className={`absolute sm:top-10 top-3 right-3 transition-all duration-200`}>
+            <svg className={`sm:w-[55px] sm:h-[104px] w-11`} xmlns="http://www.w3.org/2000/svg" width="55" height="104"
+                 viewBox="0 0 55 104" fill="none">
               <path d="M9.19727 70.5379L45.8035 33.9316M45.8035 70.5379L9.19727 33.9316" stroke="white"
                     stroke-width="6.47058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
@@ -104,7 +105,7 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
           </div>
         </motion.div>
       </Modal>
-      <div ref={buttonRef} className={`fixed top-14 sm:top-6 right-6 z-10 hidden`}>
+      <div ref={buttonRef} className={`fixed top-6 sm:top-6 right-6 z-10 hidden`}>
         <motion.button
           onClick={() => setNavigationOpen(true)}
           initial={{ scale: 0, rotate: 360 }}
