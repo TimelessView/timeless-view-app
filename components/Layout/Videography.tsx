@@ -43,7 +43,7 @@ function Videography() {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className={`rotate-3 mr-5`}
+            className={`mr-5`}
           ></iframe>
         </motion.div>
       ))}
