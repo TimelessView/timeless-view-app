@@ -47,9 +47,8 @@ export const sliderSettings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 900,
-  pauseOnHover: false
+  pauseOnHover: true
 };
-
 
 
 export const videos = [
