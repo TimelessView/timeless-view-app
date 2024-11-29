@@ -7,6 +7,8 @@ import TestimonialsSection from '@/components/Layout/Sections/TestimonialsSectio
 import MyServicesSection from '@/components/Layout/Sections/MyServicesSection';
 import Footer from '@/components/Layout/Footer';
 import BurgerMenu from '@/components/UI/BurgerMenu';
+import GoToTheTopBtn from '@/components/UI/GoToTheTopBtn';
+import ReduxProvider from '@/components/Providers/ReduxProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,11 +23,13 @@ export default function
 }>) {
   return (
     <html lang="en">
-    <body>
+    <body className={`transition-all duration-150`}>
     <div id="form"></div>
     {children}
-    {/*<GoToTheTopBtn />*/}
-    <BurgerMenu />
+    <GoToTheTopBtn />
+    <ReduxProvider>
+      <BurgerMenu />
+    </ReduxProvider>
     <div className={`w-full`}>
       <div className={`sm:h-[120%] bg-hero mb-16 pb-24`}>
         <Hero />

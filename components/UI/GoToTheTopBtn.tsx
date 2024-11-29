@@ -37,8 +37,8 @@ export default function GoToTheTopBtn() {
         onClick={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        className={`bg-zinc-950 p-4 rounded-full`}>
-        <svg className={`sm:w-11 sm:h-11 w-8 h-8`} xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+        className={`bg-zinc-950 p-3 rounded-full`}>
+        <svg className={`sm:w-10 sm:h-10 w-8 h-8`} xmlns="http://www.w3.org/2000/svg" width="45" height="45"
              viewBox="0 0 45 45"
              fill="none">
           <path

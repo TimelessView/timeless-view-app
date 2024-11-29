@@ -12,6 +12,7 @@ import Paragraph from '@/components/Typography/Paragraph';
 import HighlightText from '@/components/Typography/HighlightText';
 import { OLENAS_INSTAGRAM } from '@/utils/variables';
 import ArrowIcon from '@/components/UI/ArrowIcon';
+import ReduxProvider from '@/components/Providers/ReduxProvider';
 
 function Hero(/*{  }: HeroType*/) {
   return (
@@ -22,7 +23,9 @@ function Hero(/*{  }: HeroType*/) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className={`mb-[76px]`}>
-        <Navigation />
+        <ReduxProvider>
+          <Navigation />
+        </ReduxProvider>
       </motion.div>
       <div className={`flex flex-col text-left`} id={`aboutMe`}>
         <motion.div

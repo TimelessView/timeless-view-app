@@ -172,7 +172,8 @@ function FillInForm({ mode, onClose }: FillInFormType) {
               your
               email for a confirmation letter. You also
               need
-              to fill in the <a target={`_blank`} href="" className={`underline underline-offset-2`}><HighlightText
+              to fill in the <a target={`_blank`} href="https://forms.gle/ZguCA4pW9VsFVtbR6"
+                                className={`underline underline-offset-2`}><HighlightText
                 text={`Google
             form`} /></a> after successfully paying the deposit. The link will be attached in the letter and provided
               hereafter,
@@ -218,9 +219,9 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                   CAD
                   Deposit&#34; button, you agree to the <span
                     className={`underline underline-offset-2 cursor-pointer`}><HighlightText
-                    text={`Terms and Conditions.`} /> <SmallSpan customClasses={`text-[12px] sm:hidden`}
-                                                                 text={`(press to view)`} />
-                </span>
+                    text={`Terms and Conditions.`} />
+                </span> <SmallSpan customClasses={`text-[12px] sm:hidden no-underline`}
+                                   text={`(press to view)`} />
                 </p>
               </Tooltip>
             </div>

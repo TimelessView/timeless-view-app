@@ -5,12 +5,25 @@
 }*/
 
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Modal from '@mui/material/Modal';
+import NavLink from '@/components/UI/NavLink';
+import { useCartDispatch, useCartSelector } from '@/store/hooks';
+import { navigationSliceActions } from '@/store/slices/NavigationSlice';
+
+export type ActiveLinkType = `aboutMe` | `photoGallery` | `videoGallery` | `myServices`;
 
 export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
   const buttonRef = useRef<HTMLDivElement>(null);
-  const [navigationOpen, setNavigationOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState<ActiveLinkType>(`myServices`);
+
+  const navigationOpen = useCartSelector((state) => state.navigation.navigationOpen);
+
+  const dispatch = useCartDispatch();
+
+  function setNavigationOpen(state: boolean) {
+    dispatch(navigationSliceActions.toggleNavigation(state));
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +45,7 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
     };
   }, []);
   return (
-    <>
+    <AnimatePresence>
       <Modal
         open={navigationOpen}
         onClose={() => setNavigationOpen(false)}
@@ -40,9 +53,13 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
           backdrop: {
             sx: { backgroundColor: `rgba(0, 0, 0, 0.95)` }
           }
-        }}
-      >
-        <div className={`max-w-screen-xl m-auto pt-12 relative`}>
+        }}>
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -100 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className={`max-w-screen-xl m-auto pt-12 relative px-8  overflow-y-auto scrollbar-hide`}>
           <motion.button
             onClick={() => setNavigationOpen(false)}
             whileHover={{ scale: 1.1, rotate: -5, transition: { duration: 0.2 } }}
@@ -56,28 +73,36 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
             </svg>
           </motion.button>
           <h2 className={`font-italiana uppercase text-3xl mb-20`}>timeless view</h2>
-          <div className={`max-w-2xl flex justify-center flex-col gap-7`}>
-            <div className={`flex items-center justify-between`}>
-              <a className={`font-bold text-6xl`} href="#">About Me</a>
-              <span className={`font-semibold text-6xl`}>[01]</span>
-            </div>
+          <div className={`max-w-2xl flex justify-center flex-col gap-7 `}>
 
-            <div className={`flex items-center justify-between text-zinc-700`}>
-              <a className={`font-semibold text-6xl`} href="#">Photo Gallery</a>
-              <span className={`font-semibold text-6xl text-zinc-900`}>[02]</span>
-            </div>
+            <NavLink onClick={() => {
+              setNavigationOpen(false);
+              setActiveLink(`aboutMe`);
+            }} href={`#aboutMe`} label={`About Me`}
+                     active={activeLink === `aboutMe`} span={`[01]`} />
 
-            <div className={`flex items-center justify-between text-zinc-700`}>
-              <a className={`font-semibold text-6xl`} href="#">Video Gallery</a>
-              <span className={`font-semibold text-6xl text-zinc-900`}>[03]</span>
-            </div>
+            <NavLink onClick={() => {
+              setNavigationOpen(false);
+              setActiveLink(`photoGallery`);
+            }} href={`#photoGallery`} label={`Photo Gallery`} active={
+              activeLink === `photoGallery`
+            } span={`[02]`} />
 
-            <div className={`flex items-center justify-between text-zinc-700`}>
-              <a className={`font-semibold text-6xl`} href="#">My Services</a>
-              <span className={`font-semibold text-6xl text-zinc-900`}>[04]</span>
-            </div>
+            <NavLink onClick={() => {
+              setNavigationOpen(false);
+              setActiveLink(`videoGallery`);
+            }} href={`#videoGallery`} label={`Video Gallery`} active={
+              activeLink === `videoGallery`
+            } span={`[03]`} />
+
+            <NavLink onClick={() => {
+              setNavigationOpen(false);
+              setActiveLink(`myServices`);
+            }} href={`#myServices`} label={`My Services`} active={
+              activeLink === `myServices`
+            } span={`[04]`} />
           </div>
-        </div>
+        </motion.div>
       </Modal>
       <div ref={buttonRef} className={`fixed top-14 sm:top-6 right-6 z-10 hidden`}>
         <motion.button
@@ -93,6 +118,6 @@ export default function BurgerMenu(/*{  }: BurgerMenuType*/) {
           </svg>
         </motion.button>
       </div>
-    </>
+    </AnimatePresence>
   );
 }
