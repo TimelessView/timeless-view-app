@@ -15,7 +15,7 @@ export default function BtnSmall({ label, customClasses, ...props }: BtnSmallTyp
         {...props}
         className={`${customClasses} transform -translate-y-1/2 text-white bg-zinc-900 px-3 py-2 rounded-full
                   transition-all duration-200 active:text-slate-950 active:bg-gray-50
-                   hover:text-slate-950 hover:bg-gray-50`}>Prev
+                   hover:text-slate-950 hover:bg-gray-50`}>{label}
       </button>
     </>
   );
