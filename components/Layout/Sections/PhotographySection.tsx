@@ -11,12 +11,6 @@ import Photo4 from '@/assets/photography/photo-original-4.png';
 import Photo5 from '@/assets/photography/photo-original-5.png';
 import Photo6 from '@/assets/photography/photo-original-6.png';
 import Photo7 from '@/assets/photography/photo-original-7.png';
-import Photo8 from '@/assets/photography/photo-original-8.png';
-import Photo9 from '@/assets/photography/photo-original-9.png';
-
-import Photo1FullScreen from '@/assets/photography/photo-original-1-full-screen.png';
-import Photo2FullScreen from '@/assets/photography/photo-original-2-full-screen.png';
-import Photo3FullScreen from '@/assets/photography/photo-original-3-full-screen.png';
 
 import { motion } from 'framer-motion';
 import Photography from '@/components/Layout/Photography';
@@ -25,9 +19,10 @@ import AnimatedImage from '@/components/UI/AnimatedImage';
 import { useCartDispatch } from '@/store/hooks';
 import { photographySliceActions } from '@/store/slices/photographySlice';
 import Tooltip from '@/components/Layout/Tooltip';
+import { animationVariants } from '@/components/Layout/Videography';
 
-const photos = [Photo6, Photo7, Photo8, Photo9, Photo1, Photo2, Photo3, Photo4, Photo5];
-const fullScreenPhotos = [Photo1FullScreen.src, Photo2FullScreen.src, Photo3FullScreen.src];
+const photos = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6, Photo7];
+export const fullScreenPhotos = [Photo1.src, Photo2.src, Photo3.src, Photo4.src, Photo5.src, Photo6.src, Photo7.src];
 
 function PhotographySection() {
   const dispatch = useCartDispatch();
@@ -45,20 +40,25 @@ function PhotographySection() {
       viewport={{ once: true }}
       className={`mb-20 pt-4`}>
       <Photography />
-      <div className={`hidden sm:block`}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={animationVariants}
+        className={`hidden sm:block pl-7`}>
         <Slider {...sliderSettings}
                 className={`overflow-x-auto scrollbar-hide overflow-y-hidden gap-4 sm:gap-7`}>
           {photos.map((photo, index) => (
             <AnimatedImage key={index} src={photo.src} alt={`Image ${index + 1}`} />
           ))}
         </Slider>
-      </div>
+      </motion.div>
       <div className={`flex items-center overflow-x-auto scrollbar-hide gap-4 sm:hidden`}>
         {fullScreenPhotos.map((photo, index) => (
           <img
             key={index}
             onClick={() => handleClickOnImage(photo)}
-            src={photos[index + 4].src} // Adjust index to match the full-screen photos
+            src={photos[index].src} // Adjust index to match the full-screen photos
             alt={`Photo ${index + 1}`}
             className={`w-full`}
           />

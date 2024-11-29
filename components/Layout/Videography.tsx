@@ -3,7 +3,7 @@ import { videos } from '@/utils/variables';
 // @ts-ignore
 import Slider from 'react-slick';
 
-const videoVariants = {
+export const animationVariants = {
   hidden: { opacity: 0, y: 100 },
   visible: (i: number) => ({
     opacity: 1,
@@ -34,7 +34,7 @@ function Videography() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={videoVariants}
+            variants={animationVariants}
             className={`flex`}
           >
             <iframe
@@ -60,7 +60,7 @@ function Videography() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={videoVariants}
+              variants={animationVariants}
               className={`flex`}
             >
               <iframe

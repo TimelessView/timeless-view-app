@@ -1,10 +1,10 @@
+import { motion } from 'framer-motion';
+
 interface AnimatedImageType {
   src: string;
   alt: string;
   // children: ReactNode;
 }
-
-import { motion } from 'framer-motion';
 
 function AnimatedImage({ src, alt }: AnimatedImageType) {
   return (
