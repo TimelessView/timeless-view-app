@@ -43,7 +43,9 @@ function VideoGraphySection(/*{  }: VideoGraphySectionType*/) {
           </div>
         </motion.div>
         <Videography />
-        <Tooltip label={`Scroll to the right to see more`} />
+        <div className={`sm:hidden`}>
+          <Tooltip label={`Swipe to the right to see more`} />
+        </div>
       </motion.section>
     </>
   );

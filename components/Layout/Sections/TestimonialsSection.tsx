@@ -10,6 +10,7 @@ import { sliderSettings } from '@/utils/variables';
 import Testimonials from '@/components/Layout/Testimonials';
 import TestimonialCard from '@/components/UI/TestimonialCard';
 import ArrowIcon from '@/components/UI/ArrowIcon';
+import Tooltip from '@/components/Layout/Tooltip';
 
 function useWindowWidth() {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
@@ -88,6 +89,7 @@ function TestimonialsSection() {
               quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
           </div>
         </Slider>
+        <Tooltip label={`Swipe to the right to see more`} />
       </div>
 
       <div className={`flex flex-col gap-12 sm:hidden`}>
