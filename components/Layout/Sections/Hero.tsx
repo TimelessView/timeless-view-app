@@ -17,6 +17,7 @@ import ReduxProvider from '@/components/Providers/ReduxProvider';
 function Hero(/*{  }: HeroType*/) {
   return (
     <section
+      id={`aboutMe`}
       className={`relative max-w-screen-xl px-4 sm:px-9 m-auto pt-7 sm:pt-12`}>
       <motion.div
         initial={{ opacity: 0, y: -100 }}
@@ -27,7 +28,7 @@ function Hero(/*{  }: HeroType*/) {
           <Navigation />
         </ReduxProvider>
       </motion.div>
-      <div className={`flex flex-col text-left`} id={`aboutMe`}>
+      <div className={`flex flex-col text-left`}>
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -95,7 +96,7 @@ function Hero(/*{  }: HeroType*/) {
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className={`absolute text-right -bottom-48 bp-1042:bottom-0 right-0 hidden bp-828:block`}>
+        className={`absolute text-right -bottom-48 bp-1042:bottom-0 right-6 hidden bp-828:block`}>
         <span className={`uppercase text-sm mb-3 inline-block`}>professional photographer & videographer</span>
         <Heading heading={(
           <div className={`flex flex-col align-end`}>

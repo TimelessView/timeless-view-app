@@ -26,7 +26,7 @@ export default function Navigation(/*{  }: NavigationType*/) {
               onClick={() => window.location.href = `/`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className={`font-italiana text-3xl mr-24 bp-828:text-2xl text-nowrap 
+              className={`font-italiana text-4xl mr-24 bp-828:text-3xl text-nowrap 
             cursor-pointer`}>Timeless View
             </motion.h2>
             <div className={`items-center gap-7 hidden bp-828:flex`}>
@@ -45,7 +45,7 @@ export default function Navigation(/*{  }: NavigationType*/) {
                   stroke-width="1.66667" stroke-linecap="round" />
           </svg>
           <div className={`items-center gap-7 hidden bp-1042:flex`}>
-            <Link href={` tel:+1-234-567-8901`} label={`Contact me`} />
+            <Link href={`mailto:timelessview24@gmail.com`} label={`Contact me`} />
             <Link shouldOpenNewTab href={OLENAS_INSTAGRAM}
                   showArrowIcon
                   label={`My Instagram`} mode={`highlighted`} />

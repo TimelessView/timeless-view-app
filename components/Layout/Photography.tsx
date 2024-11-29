@@ -17,11 +17,11 @@ function Photography(/*{  }: PhotographyType*/) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className={`hidden sm:flex justify-end`}>
+          className={`hidden sm:flex justify-end sm:pr-6`}>
           <Heading heading={(
             <div className={`flex bp-828:justify-end`}>
-              <HighlightLetter text={`T`} />he <HighlightLetter text={`P`} />hotography <br />
-              I am proud <HighlightLetter text={`O`} />f
+              <p><HighlightLetter text={`T`} />he <HighlightLetter text={`P`} />hotography <br />
+                I am proud <HighlightLetter text={`O`} />f</p>
             </div>
           )} />
         </motion.div>

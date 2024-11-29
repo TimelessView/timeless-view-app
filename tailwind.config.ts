@@ -21,7 +21,8 @@ export default {
       screens: {
         'bp-1042': '1042px',
         'bp-828': '828px',
-        'bp-938': '938px'
+        'bp-938': '938px',
+        'bp-1343': '1343px'
       }
     }
   },
