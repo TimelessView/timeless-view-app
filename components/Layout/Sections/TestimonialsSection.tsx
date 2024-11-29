@@ -32,7 +32,7 @@ function TestimonialsSection() {
 
   const settings = {
     ...sliderSettings,
-    pauseOnHover: true,
+    // pauseOnHover: true,
     slidesToShow: windowWidth! <= 1064 ? 1 : 2
   };
 
