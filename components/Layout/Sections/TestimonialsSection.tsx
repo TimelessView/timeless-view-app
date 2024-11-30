@@ -46,17 +46,15 @@ function TestimonialsSection() {
 
       <div className={`overflow-x-auto scrollbar-hide ml-4 hidden sm:block`}>
         <Slider {...settings} className={`overflow-x-auto scrollbar-hide ml-4 hidden sm:flex`}>
-          {TESTIMONIALS.map(function(testimonial) {
+          {TESTIMONIALS.map(function(testimonial, index) {
             return (
-              <>
-                <div>
-                  <TestimonialCard
-                    title={testimonial.title}
-                    initials={testimonial.initials}
-                    imgSrc={testimonial.imgSrc}
-                    quote={testimonial.quote} />
-                </div>
-              </>
+              <div key={index}>
+                <TestimonialCard
+                  title={testimonial.title}
+                  initials={testimonial.initials}
+                  imgSrc={testimonial.imgSrc}
+                  quote={testimonial.quote} />
+              </div>
             );
           })}
         </Slider>

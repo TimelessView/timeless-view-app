@@ -33,6 +33,7 @@ function FillInForm({ mode, onClose }: FillInFormType) {
 
   const [chosenSelectionOptionsService, setChosenSelectionOptionsService] =
     useState(mode === `photography` ? photographyOptions : videographyOptions);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [chosenSelectionOptionsPackage, setChosenSelectionOptionsPackage] =
     useState(mode === `photography` ? photographyPackageOptions : videographyPackageOptions);
 
@@ -68,7 +69,6 @@ function FillInForm({ mode, onClose }: FillInFormType) {
       email: string;
       phone: string;
       preferredWayOfCommunication: string;
-      package: string;
     };
 
 
@@ -81,12 +81,12 @@ function FillInForm({ mode, onClose }: FillInFormType) {
     }
     setLoading(true);
 
-    const { sanitizedName, sanitizedEmail, sanitizedPhone, sanitizedPreferredWayOfCommunication, sanitizedPackage } = {
+    const { sanitizedName, sanitizedEmail, sanitizedPhone, sanitizedPreferredWayOfCommunication } = {
       sanitizedName: results.name.trim(),
       sanitizedEmail: results.email.trim().toLowerCase(),
       sanitizedPhone: results.phone.trim(),
       sanitizedPreferredWayOfCommunication: results.preferredWayOfCommunication.trim(),
-      sanitizedPackage: results.package.trim()
+      // sanitizedPackage: results.package.trim()
     };
 
     try {
@@ -96,7 +96,6 @@ function FillInForm({ mode, onClose }: FillInFormType) {
         email: sanitizedEmail,
         phone: sanitizedPhone,
         preferredWayOfCommunication: sanitizedPreferredWayOfCommunication,
-        package: sanitizedPackage
       });
 
       const session = response.data;
@@ -169,8 +168,6 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                         label: `Via Phone`
                       },
                       { value: `socialMedia`, label: `Via Social Media` }]} />
-            <Select label={`package chosen`} name={`package`}
-                    options={chosenSelectionOptionsPackage} />
           </div>
           <div className={`text-left col-span-2`}>
             <p className="text-sm text-zinc-300 max-w-screen-lg leading-relaxed">

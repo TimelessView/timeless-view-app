@@ -22,6 +22,6 @@ export const serviceBookingSchema = z.object({
   name: z.string().min(1, { message: `Name is required` }).max(255),
   email: z.string().email({ message: `Invalid email address` }),
   phone: z.string().min(10, { message: `Please provide a valid phone number!` }),
-  preferredWayOfCommunication: z.enum([`email`, `phone`, `socialMedia`]),
-  package: z.enum([`photoSession`, `videoShoot`, `both`, `none`])
+  preferredWayOfCommunication: z.enum([`email`, `phone`, `socialMedia`])
+  // package: z.enum([`photoSession`, `videoShoot`, `both`, `none`])
 });

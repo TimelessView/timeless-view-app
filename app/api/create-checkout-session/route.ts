@@ -12,8 +12,8 @@ export async function POST(request: NextRequest) {
       name,
       email,
       phone,
-      preferredWayOfCommunication,
-      package: packageChosen
+      preferredWayOfCommunication
+      // package: packageChosen
     } = await request.json();
 
     const session = await stripe.checkout.sessions.create({
@@ -29,10 +29,9 @@ export async function POST(request: NextRequest) {
               Name: ${name};\n
               Email: ${email};\n
               Phone: ${phone};\n
-              Preferred way of communication: ${preferredWayOfCommunication};\n
-              Package chosen: ${packageChosen};`
+              Preferred way of communication: ${preferredWayOfCommunication};\n`
             },
-            unit_amount: 300 // 100 CAD in cents
+            unit_amount: 100 // 100 CAD in cents
           },
           quantity: 1
         }
