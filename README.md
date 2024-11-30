@@ -47,7 +47,7 @@ booking experience.
 
 ### 8. **Custom Domain**
 
-- The app is live and accessible via the domain **[timelessview.ca](https://timelessview.ca)**.
+- The app is live and accessible via the domain **[timelesswiew.ca](https://timelesswiew.ca)**.
 
 ---
 
@@ -68,7 +68,7 @@ booking experience.
 ## Deployment
 
 - **Platform:** Deployed on [Vercel](https://vercel.com) for seamless CI/CD integration.
-- **Domain:** Linked to **[timelessview.ca](https://timelesswiew.ca)** as the primary custom domain.
+- **Domain:** Linked to **[timelesswiew.ca](https://timelesswiew.ca)** as the primary custom domain.
 - **Current State:** As of **November 30, 2024**, the app is fully deployed and operational.
 
 ---
@@ -96,8 +96,8 @@ domain settings.
 | **Variable**            | **Description**                                                                                         | **Example Value**          |
 |-------------------------|---------------------------------------------------------------------------------------------------------|----------------------------|
 | `RESEND_API_KEY`        | API key for the Resend platform used to send email notifications.                                       | `your-resend-api-key`      |
-| `RESEND_RECEIVER_EMAIL` | Email address where notifications (e.g., successful payments) will be sent to the owner of the website. | `owner@timelessview.ca`    |
-| `RESEND_FROM_DOMAIN`    | The domain used as the sender email address for notifications.                                          | `no-reply@timelessview.ca` |
+| `RESEND_RECEIVER_EMAIL` | Email address where notifications (e.g., successful payments) will be sent to the owner of the website. | `owner@timelesswiew.ca`    |
+| `RESEND_FROM_DOMAIN`    | The domain used as the sender email address for notifications.                                          | `no-reply@timelesswiew.ca` |
 
 ---
 
@@ -113,9 +113,9 @@ domain settings.
 
 ### **Application Settings**
 
-| **Variable**          | **Description**                                                     | **Example Value**             |
-|-----------------------|---------------------------------------------------------------------|-------------------------------|
-| `BASE_URL`            | Base URL of the deployed application.                               | `https://timeless-view-app.vercel.app/`     |
+| **Variable**          | **Description**                                                     | **Example Value**                          |
+|-----------------------|---------------------------------------------------------------------|--------------------------------------------|
+| `BASE_URL`            | Base URL of the deployed application.                               | `https://timeless-view-app.vercel.app/`    |
 | `NEXT_PUBLIC_API_URL` | Public API URL for accessing server-side routes in the application. | `https://timeless-view-app.vercel.app/api` |
 
 ---
@@ -132,10 +132,10 @@ domain settings.
    Example `.env` file:
    ```env
    RESEND_API_KEY=your-resend-api-key
-   RESEND_RECEIVER_EMAIL=owner@timelessview.ca
-   RESEND_FROM_DOMAIN=no-reply@timelessview.ca
+   RESEND_RECEIVER_EMAIL=owner@timelesswiew.ca
+   RESEND_FROM_DOMAIN=no-reply@timelesswiew.ca
    STRIPE_SECRET_KEY=sk_live_your_stripe_secret_key
    STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_key
    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_publishable_key
-   BASE_URL=https://timelessview.ca
-   NEXT_PUBLIC_API_URL=https://timelessview.ca/api
+   BASE_URL=https://timelesswiew.ca
+   NEXT_PUBLIC_API_URL=https://timelesswiew.ca/api
