@@ -19,7 +19,7 @@ function Photography(/*{  }: PhotographyType*/) {
           transition={{ duration: 1 }}
           className={`hidden sm:flex justify-end sm:pr-6`}>
           <Heading heading={(
-            <div className={`flex bp-828:justify-end`}>
+            <div className={`flex bp-828:justify-end mt-10 lg:mt-0`}>
               <p><HighlightLetter text={`T`} />he <HighlightLetter text={`P`} />hotography <br />
                 I am proud <HighlightLetter text={`O`} />f</p>
             </div>
