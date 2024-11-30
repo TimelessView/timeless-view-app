@@ -68,7 +68,7 @@ booking experience.
 ## Deployment
 
 - **Platform:** Deployed on [Vercel](https://vercel.com) for seamless CI/CD integration.
-- **Domain:** Linked to **[timelessview.ca](https://timelessview.ca)** as the primary custom domain.
+- **Domain:** Linked to **[timelessview.ca](https://timelesswiew.ca)** as the primary custom domain.
 - **Current State:** As of **November 30, 2024**, the app is fully deployed and operational.
 
 ---
@@ -81,52 +81,55 @@ booking experience.
 
 ---
 
-# Environment Variables Configuration  
+# Environment Variables Configuration
 
-To ensure the smooth operation of the **Timeless View** application, the following environment variables must be properly configured. These variables manage critical integrations such as payment processing, email notifications, and domain settings.  
-
----
-
-## Environment Variables  
-
-### **Email Integration (Resend)**  
-
-| **Variable**              | **Description**                                                                                          | **Example Value**                   |
-|---------------------------|----------------------------------------------------------------------------------------------------------|--------------------------------------|
-| `RESEND_API_KEY`          | API key for the Resend platform used to send email notifications.                                        | `your-resend-api-key`               |
-| `RESEND_RECEIVER_EMAIL`   | Email address where notifications (e.g., successful payments) will be sent to the owner of the website.  | `owner@timelessview.ca`             |
-| `RESEND_FROM_DOMAIN`      | The domain used as the sender email address for notifications.                                           | `no-reply@timelessview.ca`          |
+To ensure the smooth operation of the **Timeless View** application, the following environment variables must be
+properly configured. These variables manage critical integrations such as payment processing, email notifications, and
+domain settings.
 
 ---
 
-### **Payment Integration (Stripe)**  
+## Environment Variables
 
-| **Variable**                  | **Description**                                                                                       | **Example Value**                   |
-|-------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------|
-| `STRIPE_SECRET_KEY`           | Secret API key for Stripe, enabling secure payment processing.                                       | `sk_live_your_stripe_secret_key`    |
-| `STRIPE_WEBHOOK_SECRET`       | Secret key used to validate the webhook triggered by Stripe after successful payments.               | `whsec_your_webhook_secret_key`     |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Public Stripe API key, used for frontend integration with the Stripe checkout process.                  | `pk_live_your_stripe_publishable_key` |
+### **Email Integration (Resend)**
 
----
-
-### **Application Settings**  
-
-| **Variable**                  | **Description**                                                                                       | **Example Value**                   |
-|-------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------|
-| `BASE_URL`                    | Base URL of the deployed application.                                                               | `https://timelessview.ca`           |
-| `NEXT_PUBLIC_API_URL`         | Public API URL for accessing server-side routes in the application.                                 | `https://timelessview.ca/api`       |
+| **Variable**            | **Description**                                                                                         | **Example Value**          |
+|-------------------------|---------------------------------------------------------------------------------------------------------|----------------------------|
+| `RESEND_API_KEY`        | API key for the Resend platform used to send email notifications.                                       | `your-resend-api-key`      |
+| `RESEND_RECEIVER_EMAIL` | Email address where notifications (e.g., successful payments) will be sent to the owner of the website. | `owner@timelessview.ca`    |
+| `RESEND_FROM_DOMAIN`    | The domain used as the sender email address for notifications.                                          | `no-reply@timelessview.ca` |
 
 ---
 
-## Configuration Instructions  
+### **Payment Integration (Stripe)**
+
+| **Variable**                         | **Description**                                                                        | **Example Value**                     |
+|--------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------|
+| `STRIPE_SECRET_KEY`                  | Secret API key for Stripe, enabling secure payment processing.                         | `sk_live_your_stripe_secret_key`      |
+| `STRIPE_WEBHOOK_SECRET`              | Secret key used to validate the webhook triggered by Stripe after successful payments. | `whsec_your_webhook_secret_key`       |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Public Stripe API key, used for frontend integration with the Stripe checkout process. | `pk_live_your_stripe_publishable_key` |
+
+---
+
+### **Application Settings**
+
+| **Variable**          | **Description**                                                     | **Example Value**             |
+|-----------------------|---------------------------------------------------------------------|-------------------------------|
+| `BASE_URL`            | Base URL of the deployed application.                               | `https://timeless-view-app.vercel.app/`     |
+| `NEXT_PUBLIC_API_URL` | Public API URL for accessing server-side routes in the application. | `https://timeless-view-app.vercel.app/api` |
+
+---
+
+## Configuration Instructions
 
 1. **Create a `.env` File**  
-   In the root directory of your project, create a `.env` file if it doesn’t already exist.  
+   In the root directory of your project, create a `.env` file if it doesn’t already exist.
 
 2. **Add Environment Variables**  
-   Copy and paste the variables listed above into the `.env` file and replace the placeholder values with the actual credentials.  
+   Copy and paste the variables listed above into the `.env` file and replace the placeholder values with the actual
+   credentials.
 
-   Example `.env` file:  
+   Example `.env` file:
    ```env
    RESEND_API_KEY=your-resend-api-key
    RESEND_RECEIVER_EMAIL=owner@timelessview.ca
