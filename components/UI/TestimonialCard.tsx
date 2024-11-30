@@ -6,11 +6,10 @@ interface TestimonialCardType {
   quote: string;
   imgSrc: string;
   initials: string;
-  date: string;
   // children: ReactNode;
 }
 
-function TestimonialCard({ title, quote, imgSrc, date, initials }: TestimonialCardType) {
+function TestimonialCard({ title, quote, imgSrc, initials }: TestimonialCardType) {
   return (
     <AnimatePresence>
       <motion.div
@@ -19,7 +18,7 @@ function TestimonialCard({ title, quote, imgSrc, date, initials }: TestimonialCa
         transition={{ duration: 1 }}
         viewport={{ once: true }}
         className={`max-w-screen-sm sm:min-w-[530px] px-3 sm:px-0`}>
-        <h2 className={`text-5xl font-italiana uppercase mb-8`}>{title}</h2>
+        <h2 className={`text-5xl font-italiana mb-8`}>{title}</h2>
         <div className={`mb-9`}>
           <Paragraph customClasses={`max-w-screen-sm text-zinc-300`} text={(
             <>
@@ -29,11 +28,11 @@ function TestimonialCard({ title, quote, imgSrc, date, initials }: TestimonialCa
         </div>
         <div className={`flex items-center gap-4`}>
           <div>
-            <img src={imgSrc} alt="User Icon 1" />
+            <img className={`rounded-full w-14 h-14`} src={imgSrc} alt="User Icon 1" />
           </div>
           <div className={`flex flex-col gap-1`}>
             <h3 className={`font-italiana text-2xl`}>{initials}</h3>
-            <p className={`text-zinc-600 text-sm`}>{date}</p>
+            {/*<p className={`text-zinc-600 text-sm`}>{date}</p>*/}
           </div>
         </div>
       </motion.div>

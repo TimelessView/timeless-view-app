@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import UserImg1 from '@/assets/testimonials/user-icon-1.png';
-import UserImg2 from '@/assets/testimonials/user-icon-2.png';
 // @ts-ignore
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
-import { sliderSettings } from '@/utils/variables';
+import { sliderSettings, TESTIMONIALS } from '@/utils/variables';
 import Testimonials from '@/components/Layout/Testimonials';
 import TestimonialCard from '@/components/UI/TestimonialCard';
 import ArrowIcon from '@/components/UI/ArrowIcon';
@@ -48,89 +46,54 @@ function TestimonialsSection() {
 
       <div className={`overflow-x-auto scrollbar-hide ml-4 hidden sm:block`}>
         <Slider {...settings} className={`overflow-x-auto scrollbar-hide ml-4 hidden sm:flex`}>
-          <div>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg1.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-          </div>
-          <div>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-          </div>
-          <div>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-          </div>
-          <div>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg1.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-          </div>
-          <div>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-          </div>
+          {TESTIMONIALS.map(function(testimonial) {
+            return (
+              <>
+                <div>
+                  <TestimonialCard
+                    title={testimonial.title}
+                    initials={testimonial.initials}
+                    imgSrc={testimonial.imgSrc}
+                    quote={testimonial.quote} />
+                </div>
+              </>
+            );
+          })}
         </Slider>
         <Tooltip label={`Swipe to the right to see more`} />
       </div>
 
       <div className={`flex flex-col gap-12 sm:hidden`}>
-        <TestimonialCard
-          date={`August 14, 2024`}
-          title={`very good!`}
-          initials={`Jane Doe`}
-          imgSrc={UserImg2.src}
-          quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-        <TestimonialCard
-          date={`August 14, 2024`}
-          title={`very good!`}
-          initials={`Jane Doe`}
-          imgSrc={UserImg2.src}
-          quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-        <TestimonialCard
-          date={`August 14, 2024`}
-          title={`very good!`}
-          initials={`Jane Doe`}
-          imgSrc={UserImg2.src}
-          quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
+
+        {TESTIMONIALS.slice(0, 3).map(function(testimonial) {
+          return (
+            <>
+              <div>
+                <TestimonialCard
+                  title={testimonial.title}
+                  initials={testimonial.initials}
+                  imgSrc={testimonial.imgSrc}
+                  quote={testimonial.quote} />
+              </div>
+            </>
+          );
+        })}
+
         {!paginateComments && (
           <>
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
-            <TestimonialCard
-              date={`August 14, 2024`}
-              title={`very good!`}
-              initials={`Jane Doe`}
-              imgSrc={UserImg2.src}
-              quote={`Working with Olena was an absolute dream! She has an incredible talent for making everyone feel comfortable, capturing authentic, beautiful moments that we’ll cherish forever!`} />
+            {TESTIMONIALS.slice(3).map(function(testimonial) {
+              return (
+                <>
+                  <div>
+                    <TestimonialCard
+                      title={testimonial.title}
+                      initials={testimonial.initials}
+                      imgSrc={testimonial.imgSrc}
+                      quote={testimonial.quote} />
+                  </div>
+                </>
+              );
+            })}
           </>
         )}
       </div>
