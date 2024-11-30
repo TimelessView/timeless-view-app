@@ -173,16 +173,21 @@ function FillInForm({ mode, onClose }: FillInFormType) {
                     options={chosenSelectionOptionsPackage} />
           </div>
           <div className={`text-left col-span-2`}>
-            <p className={`text-sm text-zinc-300 max-w-screen-lg leading-relaxed`}>After paying the deposit, check
-              your
-              email for a confirmation letter. You also
-              need
-              to fill in the <a target={`_blank`} href="https://forms.gle/ZguCA4pW9VsFVtbR6"
-                                className={`underline underline-offset-2`}><HighlightText
-                text={`Google
-            form`} /></a> after successfully paying the deposit. The link will be attached in the letter and provided
-              hereafter,
-              following a successful payment.</p>
+            <p className="text-sm text-zinc-300 max-w-screen-lg leading-relaxed">
+              After paying the deposit, check your email for a confirmation letter. For a photography session, fill
+              in <a
+              target="_blank"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc5-Q-ZXAZHJh5hYDhWrDYSrXYIgzAMhY23-e0_FtsKe26Xpg/viewform?usp=sf_link"
+              className="underline underline-offset-2">
+              <HighlightText text="this form" />
+            </a>. For a videography session, complete <a
+              target="_blank"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfVMZsarB889Te6zSYE4sG4mScanmwrZgCyOmp-xMcQqP9Qug/viewform?usp=sf_link"
+              className="underline underline-offset-2">
+              <HighlightText text="that form" />
+            </a> after payment. The links would be attached in the confirmation letter as well sent to your email.
+            </p>
+
 
             <div className={`flex lg:justify-between lg:items-center mt-10 mb-4 flex-col lg:flex-row gap-8 lg:gap-10`}>
               <button

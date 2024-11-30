@@ -78,9 +78,13 @@ export async function POST(req: NextRequest) {
               html: `
                 <h1>Dear ${name},</h1>
                 <p>Thank you for booking my services! I will contact you shortly.</p>
-                <p>Now, please feel free to fill in this form here (if you did not do yet) - <a href="#" style="
-                color: #0082fa; text-decoration: underline; font-weight: 600">Google Form</a>, so I would 
-                be able to understand your needs better.</p>
+                <p>
+                If you chose Photography service, please fill in 
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5-Q-ZXAZHJh5hYDhWrDYSrXYIgzAMhY23-e0_FtsKe26Xpg/viewform?usp=sf_link">this form</a>.
+                If you chose Videography service, please fill in 
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVMZsarB889Te6zSYE4sG4mScanmwrZgCyOmp-xMcQqP9Qug/viewform?usp=sf_link">that form</a>.
+                Thus, I will be able to provide you with the best experience possible.
+                </p>
                 <h2>Booking Details:</h2>
                 <p>Name: ${name}</p>
                 <p>Email: ${email}</p>
