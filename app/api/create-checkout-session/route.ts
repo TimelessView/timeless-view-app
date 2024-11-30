@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
               Preferred way of communication: ${preferredWayOfCommunication};\n
               Package chosen: ${packageChosen};`
             },
-            unit_amount: 10000 // 100 CAD in cents
+            unit_amount: 300 // 100 CAD in cents
           },
           quantity: 1
         }
