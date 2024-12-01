@@ -9,10 +9,10 @@ import Navigation from '@/components/Layout/Navigation';
 import Heading from '@/components/Typography/Heading';
 import HighlightLetter from '@/components/Typography/HighlightLetter';
 import Paragraph from '@/components/Typography/Paragraph';
-import HighlightText from '@/components/Typography/HighlightText';
 import { OLENAS_INSTAGRAM } from '@/utils/variables';
 import ArrowIcon from '@/components/UI/ArrowIcon';
 import ReduxProvider from '@/components/Providers/ReduxProvider';
+import HighlightText from '@/components/Typography/HighlightText';
 
 function Hero(/*{  }: HeroType*/) {
   return (
@@ -50,13 +50,11 @@ function Hero(/*{  }: HeroType*/) {
           className={`mb-12 hidden bp-1042:flex`}>
           <Paragraph text={(
             <>
-              I am <HighlightText
-              text={`a talented visual storyteller`} /> with
-              a passion for
-              capturing life&#39;s most compelling moments through
-              video and photography. I transform ordinary scenes into <HighlightText text={`stunning visuals that resonate deeply with
-              audiences.`} />
-            </>
+              Hi, I’m Olena, a passionate visual storyteller with roots in a cozy Ukrainian village and a creative
+              journey that brought me to Canada in 2023. Inspired by my love for art and my surroundings, I specialize
+              in turning life’s most beautiful moments <HighlightText text={`into vivid visual stories`} /> through
+              photography and
+              videography. </>
           )} />
         </motion.div>
 

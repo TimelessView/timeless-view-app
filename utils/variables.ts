@@ -6,6 +6,8 @@ import UserImg5 from '@/assets/testimonials/user-icon-5.png';
 import UserImg6 from '@/assets/testimonials/user-icon-6.png';
 import UserImg7 from '@/assets/testimonials/user-icon-7.png';
 
+export const UNIT_AMOUNT = 10000;
+
 export const OLENAS_INSTAGRAM = `https://www.instagram.com/timeless_view_ca?igsh=Z3I5aTUxZmxsbmox`;
 
 export const photographyOptions = [

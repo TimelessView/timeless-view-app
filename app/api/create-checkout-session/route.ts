@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { UNIT_AMOUNT } from '@/utils/variables';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-11-20.acacia'
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
               Phone: ${phone};\n
               Preferred way of communication: ${preferredWayOfCommunication};\n`
             },
-            unit_amount: 100 // 100 CAD in cents
+            unit_amount: UNIT_AMOUNT // 100 CAD in cents
           },
           quantity: 1
         }
