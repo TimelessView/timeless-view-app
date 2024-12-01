@@ -50,7 +50,8 @@ function Hero(/*{  }: HeroType*/) {
           className={`mb-12 hidden bp-1042:flex`}>
           <Paragraph text={(
             <>
-              Hi, I’m Olena, a passionate visual storyteller with roots in a cozy Ukrainian village and a creative
+              Hi, I’m Olena, <HighlightText text={`a passionate visual storyteller`} /> with roots in a cozy Ukrainian
+              village and a creative
               journey that brought me to Canada in 2023. Inspired by my love for art and my surroundings, I specialize
               in turning life’s most beautiful moments <HighlightText text={`into vivid visual stories`} /> through
               photography and
