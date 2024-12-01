@@ -37,7 +37,7 @@ export default function
       <BurgerMenu />
     </ReduxProvider>
     <div className={`w-full`}>
-      <div className={`sm:h-[120%] bg-hero mb-16 pb-24`}>
+      <div className={`h-[120%] bp-1800:h-screen bg-hero mb-16 pb-24`}>
         <Hero />
       </div>
       <main>
