@@ -63,9 +63,7 @@ export const sliderSettings = {
 
 export const videos = [
   'https://www.youtube.com/embed/YWU8Dbe_chU?si=w5ZFTVuD7-fq3Men',
-  'https://www.youtube.com/embed/GlmAH_opZos?si=XTMqtCMjAqvWITP-',
   'https://www.youtube.com/embed/1dLeIdLddE8?si=D6dCxgISezbuFa4t',
-  'https://www.youtube.com/embed/B76GfvpW-L0?si=21arfQD1P6ys9FFa',
   'https://www.youtube.com/embed/pc1LaQ-1bMA?si=XUWUb0Q8Ujsh_h_-',
   'https://www.youtube.com/embed/ffligM1ocpM?si=B6YSZ1mYbVRY0VwL',
   'https://www.youtube.com/embed/gCnxdmN0RoY'

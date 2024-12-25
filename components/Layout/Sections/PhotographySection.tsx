@@ -8,8 +8,6 @@ import Photo1 from '@/assets/photography/photo-original-1.png';
 import Photo3 from '@/assets/photography/photo-original-3.png';
 import Photo4 from '@/assets/photography/photo-original-4.png';
 import Photo5 from '@/assets/photography/photo-original-5.png';
-import Photo6 from '@/assets/photography/photo-original-6.png';
-import Photo7 from '@/assets/photography/photo-original-7.png';
 
 import { motion } from 'framer-motion';
 import Photography from '@/components/Layout/Photography';
@@ -20,8 +18,8 @@ import { photographySliceActions } from '@/store/slices/photographySlice';
 import Tooltip from '@/components/Layout/Tooltip';
 import { animationVariants } from '@/components/Layout/Videography';
 
-const photos = [Photo1, Photo5, Photo3, Photo4, Photo6, Photo7];
-export const fullScreenPhotos = [Photo1.src, Photo5.src, Photo3.src, Photo4.src, Photo6.src, Photo7.src];
+const photos = [Photo1, Photo5, Photo3, Photo4];
+export const fullScreenPhotos = [Photo1.src, Photo5.src, Photo3.src, Photo4.src];
 
 function PhotographySection() {
   const dispatch = useCartDispatch();
